@@ -1,0 +1,1266 @@
+[data-tip] {
+  position: relative;
+  overflow: visible;
+}
+[data-tip]:before,
+[data-tip]:after {
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transition: opacity 0.3s ease, -webkit-transform 0.3s ease, visibility 0.3s ease;
+  -webkit-transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, -webkit-transform 0.3s ease;
+  visibility: hidden;
+  font-size: 12px;
+  line-height: 12px;
+}
+[data-tip]:before {
+  content: '';
+  border: 6px solid transparent;
+}
+[data-tip]:after {
+  content: attr(data-tip);
+  padding: 7px 10px;
+  background-color: #333;
+  display: block;
+  color: #fff;
+  white-space: nowrap;
+}
+[data-tip]:hover:before,
+[data-tip].data-tip-visible:before,
+[data-tip]:hover:after,
+[data-tip].data-tip-visible:after {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  visibility: visible;
+  z-index: 9999;
+}
+[data-tip].data-tip-bottom:before,
+[data-tip].data-tip-bottom:after {
+  top: 100%;
+  left: 50%;
+}
+[data-tip].data-tip-bottom:before {
+  margin-top: -12px;
+  border-bottom-color: #333;
+}
+[data-tip].data-tip-bottom:hover:before,
+[data-tip].data-tip-bottom.data-tip-visible:before,
+[data-tip].data-tip-bottom:hover:after,
+[data-tip].data-tip-bottom.data-tip-visible:after {
+  -webkit-transform: translateX(-50%) translateY(8px);
+          transform: translateX(-50%) translateY(8px);
+}
+[data-tip].data-tip-top:before,
+[data-tip].data-tip-top:after {
+  bottom: 100%;
+  left: 50%;
+}
+[data-tip].data-tip-top:before {
+  margin-bottom: -12px;
+  border-top-color: #333;
+}
+[data-tip].data-tip-top:hover:before,
+[data-tip].data-tip-top.data-tip-visible:before,
+[data-tip].data-tip-top:hover:after,
+[data-tip].data-tip-top.data-tip-visible:after {
+  -webkit-transform: translateX(-50%) translateY(-8px);
+          transform: translateX(-50%) translateY(-8px);
+}
+[data-tip].data-tip-left:before,
+[data-tip].data-tip-left:after {
+  top: 50%;
+  right: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+[data-tip].data-tip-left:before {
+  margin-right: -12px;
+  border-left-color: #333;
+}
+[data-tip].data-tip-left:hover:before,
+[data-tip].data-tip-left.data-tip-visible:before,
+[data-tip].data-tip-left:hover:after,
+[data-tip].data-tip-left.data-tip-visible:after {
+  -webkit-transform: translateY(-50%) translateX(-8px);
+          transform: translateY(-50%) translateX(-8px);
+}
+[data-tip].data-tip-right:before,
+[data-tip].data-tip-right:after {
+  top: 50%;
+  left: 100%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+[data-tip].data-tip-right:before {
+  margin-left: -12px;
+  border-right-color: #333;
+}
+[data-tip].data-tip-right:hover:before,
+[data-tip].data-tip-right.data-tip-visible:before,
+[data-tip].data-tip-right:hover:after,
+[data-tip].data-tip-right.data-tip-visible:after {
+  -webkit-transform: translateY(-50%) translateX(8px);
+          transform: translateY(-50%) translateX(8px);
+}
+[data-tip].data-tip-success:after {
+  background-color: #458746;
+}
+[data-tip].data-tip-success.data-tip-top:before {
+  border-top-color: #458746;
+}
+[data-tip].data-tip-success.data-tip-left:before {
+  border-left-color: #458746;
+}
+[data-tip].data-tip-success.data-tip-right:before {
+  border-right-color: #458746;
+}
+[data-tip].data-tip-success.data-tip-bottom:before {
+  border-bottom-color: #458746;
+}
+[data-tip].data-tip-warning:after {
+  background-color: #c09854;
+}
+[data-tip].data-tip-warning.data-tip-top:before {
+  border-top-color: #c09854;
+}
+[data-tip].data-tip-warning.data-tip-left:before {
+  border-left-color: #c09854;
+}
+[data-tip].data-tip-warning.data-tip-right:before {
+  border-right-color: #c09854;
+}
+[data-tip].data-tip-warning.data-tip-bottom:before {
+  border-bottom-color: #c09854;
+}
+[data-tip].data-tip-danger:after {
+  background-color: #b34e4d;
+}
+[data-tip].data-tip-danger.data-tip-top:before {
+  border-top-color: #b34e4d;
+}
+[data-tip].data-tip-danger.data-tip-left:before {
+  border-left-color: #b34e4d;
+}
+[data-tip].data-tip-danger.data-tip-right:before {
+  border-right-color: #b34e4d;
+}
+[data-tip].data-tip-danger.data-tip-bottom:before {
+  border-bottom-color: #b34e4d;
+}
+[data-tip].data-tip-info:after {
+  background-color: #3986ac;
+}
+[data-tip].data-tip-info.data-tip-top:before {
+  border-top-color: #3986ac;
+}
+[data-tip].data-tip-info.data-tip-left:before {
+  border-left-color: #3986ac;
+}
+[data-tip].data-tip-info.data-tip-right:before {
+  border-right-color: #3986ac;
+}
+[data-tip].data-tip-info.data-tip-bottom:before {
+  border-bottom-color: #3986ac;
+}
+[data-tip].data-tip-no-animation:before,
+[data-tip].data-tip-no-animation:after {
+  -webkit-transition: none;
+  transition: none;
+}
+[data-tip].data-tip-rounded:after {
+  border-radius: 2px;
+}
+[data-tip].data-tip-fast:before,
+[data-tip].data-tip-fast:after {
+  transition: opacity 0.1s ease, -webkit-transform 0.1s ease, visibility 0.1s ease;
+  -webkit-transition: opacity 0.1s ease, visibility 0.1s ease, -webkit-transform 0.1s ease;
+  transition: opacity 0.1s ease, visibility 0.1s ease, -webkit-transform 0.1s ease;
+  transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s ease;
+  transition: opacity 0.1s ease, transform 0.1s ease, visibility 0.1s ease, -webkit-transform 0.1s ease;
+}
+[data-tip].data-tip-shadow:after {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, .3);
+}
+
+.sidebar-nav .fa, .fix-operate .fa {
+  margin-right: 10px;
+}
+.slide-fade-enter-active {
+  -webkit-transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-leave-active {
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+.slide-fade-enter, .slide-fade-leave-active {
+  -webkit-transform: translateX(10px);
+          transform: translateX(10px);
+  opacity: 0;
+}
+.page-content {
+  padding: 30px 0 100px;
+}
+.page-content .table td .btn {
+    margin-right: 6px;
+}
+.page-content .title {
+    font-weight: 400;
+    margin: 0 0 30px;
+}
+.page-content .nav-tabs {
+    margin: 0 -30px 20px;
+    padding-left: 30px;
+}
+.page-content .nav-tabs a.active, .page-content .nav-tabs .router-link-active {
+      color: #555;
+      cursor: default;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-bottom-color: transparent;
+}
+.page-content .fix-operate {
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #e7e7e7;
+    padding: 20px 0;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+}
+
+.container {
+  margin-top: 10%;
+}
+.login-page {
+  background: #05080D url(http://mi0.mmmono.com/2be8618f9cc798a1521f96b49073dc8d.jpg) center center no-repeat;
+  background-size: cover;
+}
+.login-page .navbar {
+    display: none;
+}
+.login-page #page-wrapper {
+    margin: 0;
+    background-color: transparent;
+}
+
+.list-complete-item {
+  color: #000;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-complete-enter, .list-complete-leave-active {
+  opacity: 0;
+  -webkit-transform: translateY(30px);
+          transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal {
+  text-align: center;
+  padding: 0 !important;
+}
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.fade-scale {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.fade-scale.in {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+.modal-backdrop {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.upload-btn[data-v-0c9561e4] {
+  position: relative;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.upload-btn .fa[data-v-0c9561e4] {
+    margin-right: 5px;
+}
+.upload-progress[data-v-0c9561e4] {
+  margin-left: 15px;
+  vertical-align: text-bottom;
+}
+.upload-preview input[data-v-0c9561e4] {
+  margin-top: 10px;
+}
+.upload-preview img[data-v-0c9561e4] {
+  max-width: 500px;
+  max-height: 400px;
+  border: 1px solid #ccc;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.upload-preview .preview-img[data-v-0c9561e4] {
+  position: relative;
+  display: inline-block;
+}
+.upload-preview .preview-img .zoom[data-v-0c9561e4] {
+    color: #fff;
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+    bottom: 5px;
+}
+.upload-btn input[type="file"][data-v-0c9561e4] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 200px;
+  opacity: 0;
+}
+
+input[type="file"][data-v-222c1854] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 200px;
+  opacity: 0;
+  cursor: pointer;
+}
+.progress[data-v-222c1854] {
+  margin-left: 15px;
+}
+.upload-pic[data-v-222c1854] {
+  max-width: 170px;
+  display: block !important;
+  overflow: hidden;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.preview[data-v-222c1854] {
+  margin-top: 0px !important;
+}
+.preview img[data-v-222c1854] {
+    max-width: 300px;
+}
+.crop-img-wrap[data-v-222c1854] {
+  height: 500px;
+  overflow: hidden;
+}
+.remodal[data-v-222c1854] {
+  padding: 15px 15px 65px;
+  margin-bottom: 0;
+}
+.crop-option[data-v-222c1854] {
+  margin-top: 15px;
+}
+.crop-option .zoom[data-v-222c1854] {
+    margin-right: 30px;
+}
+.crop-option .zoom span[data-v-222c1854] {
+      margin-left: 10px;
+      cursor: pointer;
+}
+.crop-option .zoom .fa[data-v-222c1854] {
+      font-size: 16px;
+}
+/*
+ *  Remodal - v1.1.0
+ *  Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
+ *  http://vodkabears.github.io/remodal/
+ *
+ *  Made by Ilya Makarov
+ *  Under MIT License
+ */
+
+/* ==========================================================================
+   Remodal's necessary styles
+   ========================================================================== */
+
+/* Hide scroll bar */
+
+html.remodal-is-locked {
+  overflow: hidden;
+
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+/* Anti FOUC */
+
+.remodal,
+[data-remodal-id] {
+  display: none;
+}
+
+/* Necessary styles of the overlay */
+
+.remodal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: -5000px;
+  right: -5000px;
+  bottom: -5000px;
+  left: -5000px;
+
+  display: none;
+}
+
+/* Necessary styles of the wrapper */
+
+.remodal-wrapper {
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: none;
+  overflow: auto;
+
+  text-align: center;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.remodal-wrapper:after {
+  display: inline-block;
+
+  height: 100%;
+  margin-left: -0.05em;
+
+  content: "";
+}
+
+/* Fix iPad, iPhone glitches */
+
+.remodal-overlay,
+.remodal-wrapper {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Necessary styles of the modal dialog */
+
+.remodal {
+  position: relative;
+
+  outline: none;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.remodal-is-initialized {
+  /* Disable Anti-FOUC */
+  display: inline-block;
+}
+/*
+ *  Remodal - v1.1.0
+ *  Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
+ *  http://vodkabears.github.io/remodal/
+ *
+ *  Made by Ilya Makarov
+ *  Under MIT License
+ */
+
+/* ==========================================================================
+   Remodal's default mobile first theme
+   ========================================================================== */
+
+/* Default theme styles for the background */
+
+.remodal-bg.remodal-is-opening,
+.remodal-bg.remodal-is-opened {
+  -webkit-filter: blur(3px);
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feGaussianBlur stdDeviation="3" /></filter></svg>#filter');
+  filter: blur(3px);
+}
+
+/* Default theme styles of the overlay */
+
+.remodal-overlay {
+  background: rgba(43, 46, 56, .9);
+}
+
+.remodal-overlay.remodal-is-opening,
+.remodal-overlay.remodal-is-closing {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.remodal-overlay.remodal-is-opening {
+  -webkit-animation-name: remodal-overlay-opening-keyframes;
+  -webkit-animation-name: remodal-overlay-opening-keyframes;
+  animation-name: remodal-overlay-opening-keyframes;
+  animation-name: remodal-overlay-opening-keyframes;
+}
+
+.remodal-overlay.remodal-is-closing {
+  -webkit-animation-name: remodal-overlay-closing-keyframes;
+  -webkit-animation-name: remodal-overlay-closing-keyframes;
+  animation-name: remodal-overlay-closing-keyframes;
+  animation-name: remodal-overlay-closing-keyframes;
+}
+
+/* Default theme styles of the wrapper */
+
+.remodal-wrapper {
+  padding: 10px 10px 0;
+}
+
+/* Default theme styles of the modal dialog */
+
+.remodal {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 35px;
+
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  color: #2b2e38;
+  background: #fff;
+}
+
+.remodal.remodal-is-opening,
+.remodal.remodal-is-closing {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.remodal.remodal-is-opening {
+  -webkit-animation-name: remodal-opening-keyframes;
+  -webkit-animation-name: remodal-opening-keyframes;
+  animation-name: remodal-opening-keyframes;
+  animation-name: remodal-opening-keyframes;
+}
+
+.remodal.remodal-is-closing {
+  -webkit-animation-name: remodal-closing-keyframes;
+  -webkit-animation-name: remodal-closing-keyframes;
+  animation-name: remodal-closing-keyframes;
+  animation-name: remodal-closing-keyframes;
+}
+
+/* Vertical align of the modal dialog */
+
+.remodal,
+.remodal-wrapper:after {
+  vertical-align: middle;
+}
+
+/* Close button */
+
+.remodal-close {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+  overflow: visible;
+
+  width: 35px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+  text-decoration: none;
+
+  color: #95979c;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.remodal-close:hover,
+.remodal-close:focus {
+  color: #2b2e38;
+}
+
+.remodal-close:before {
+  font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif !important;
+  font-size: 25px;
+  line-height: 35px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: block;
+
+  width: 35px;
+
+  content: "\D7";
+  text-align: center;
+}
+
+/* Dialog buttons */
+
+.remodal-confirm,
+.remodal-cancel {
+  font: inherit;
+
+  display: inline-block;
+  overflow: visible;
+
+  min-width: 110px;
+  margin: 0;
+  padding: 12px 0;
+
+  cursor: pointer;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+
+  border: 0;
+  outline: 0;
+}
+
+.remodal-confirm {
+  color: #fff;
+  background: #81c784;
+}
+
+.remodal-confirm:hover,
+.remodal-confirm:focus {
+  background: #66bb6a;
+}
+
+.remodal-cancel {
+  color: #fff;
+  background: #e57373;
+}
+
+.remodal-cancel:hover,
+.remodal-cancel:focus {
+  background: #ef5350;
+}
+
+/* Remove inner padding and border in Firefox 4+ for the button tag. */
+
+.remodal-confirm::-moz-focus-inner,
+.remodal-cancel::-moz-focus-inner,
+.remodal-close::-moz-focus-inner {
+  padding: 0;
+
+  border: 0;
+}
+
+/* Keyframes
+   ========================================================================== */
+
+@-webkit-keyframes remodal-opening-keyframes {
+  from {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: none;
+    transform: none;
+
+    opacity: 1;
+  }
+}
+
+@keyframes remodal-opening-keyframes {
+  from {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: none;
+    transform: none;
+
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes remodal-closing-keyframes {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+
+    opacity: 0;
+  }
+}
+
+@keyframes remodal-closing-keyframes {
+  from {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes remodal-overlay-opening-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes remodal-overlay-opening-keyframes {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes remodal-overlay-closing-keyframes {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes remodal-overlay-closing-keyframes {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Media queries
+   ========================================================================== */
+
+@media only screen and (min-width: 641px) {
+  .remodal {
+    max-width: 700px;
+  }
+}
+
+/* IE8
+   ========================================================================== */
+
+.lt-ie9 .remodal-overlay {
+  background: #2b2e38;
+}
+
+.lt-ie9 .remodal {
+  width: 700px;
+}
+/*!
+ * Cropper v2.3.4
+ * https://github.com/fengyuanchen/cropper
+ *
+ * Copyright (c) 2014-2016 Fengyuan Chen and contributors
+ * Released under the MIT license
+ *
+ * Date: 2016-09-03T05:50:45.412Z
+ */
+.cropper-container {
+  font-size: 0;
+  line-height: 0;
+
+  position: relative;
+
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+
+  direction: ltr !important;
+}
+
+.cropper-container img {
+  display: block;
+
+  width: 100%;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 100%;
+  min-height: 0 !important;
+  max-height: none !important;
+
+  image-orientation: 0deg !important;
+}
+
+.cropper-wrap-box,
+.cropper-canvas,
+.cropper-drag-box,
+.cropper-crop-box,
+.cropper-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.cropper-wrap-box {
+  overflow: hidden;
+}
+
+.cropper-drag-box {
+  opacity: 0;
+  background-color: #fff;
+
+  filter: alpha(opacity=0);
+}
+
+.cropper-modal {
+  opacity: .5;
+  background-color: #000;
+
+  filter: alpha(opacity=50);
+}
+
+.cropper-view-box {
+  display: block;
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+
+  outline: 1px solid #39f;
+  outline-color: rgba(51, 153, 255, .75);
+}
+
+.cropper-dashed {
+  position: absolute;
+
+  display: block;
+
+  opacity: .5;
+  border: 0 dashed #eee;
+
+  filter: alpha(opacity=50);
+}
+
+.cropper-dashed.dashed-h {
+  top: 33.33333%;
+  left: 0;
+
+  width: 100%;
+  height: 33.33333%;
+
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.cropper-dashed.dashed-v {
+  top: 0;
+  left: 33.33333%;
+
+  width: 33.33333%;
+  height: 100%;
+
+  border-right-width: 1px;
+  border-left-width: 1px;
+}
+
+.cropper-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+
+  width: 0;
+  height: 0;
+
+  opacity: .75;
+
+  filter: alpha(opacity=75);
+}
+
+.cropper-center:before,
+.cropper-center:after {
+  position: absolute;
+
+  display: block;
+
+  content: ' ';
+
+  background-color: #eee;
+}
+
+.cropper-center:before {
+  top: 0;
+  left: -3px;
+
+  width: 7px;
+  height: 1px;
+}
+
+.cropper-center:after {
+  top: -3px;
+  left: 0;
+
+  width: 1px;
+  height: 7px;
+}
+
+.cropper-face,
+.cropper-line,
+.cropper-point {
+  position: absolute;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: .1;
+
+  filter: alpha(opacity=10);
+}
+
+.cropper-face {
+  top: 0;
+  left: 0;
+
+  background-color: #fff;
+}
+
+.cropper-line {
+  background-color: #39f;
+}
+
+.cropper-line.line-e {
+  top: 0;
+  right: -3px;
+
+  width: 5px;
+
+  cursor: e-resize;
+}
+
+.cropper-line.line-n {
+  top: -3px;
+  left: 0;
+
+  height: 5px;
+
+  cursor: n-resize;
+}
+
+.cropper-line.line-w {
+  top: 0;
+  left: -3px;
+
+  width: 5px;
+
+  cursor: w-resize;
+}
+
+.cropper-line.line-s {
+  bottom: -3px;
+  left: 0;
+
+  height: 5px;
+
+  cursor: s-resize;
+}
+
+.cropper-point {
+  width: 5px;
+  height: 5px;
+
+  opacity: .75;
+  background-color: #39f;
+
+  filter: alpha(opacity=75);
+}
+
+.cropper-point.point-e {
+  top: 50%;
+  right: -3px;
+
+  margin-top: -3px;
+
+  cursor: e-resize;
+}
+
+.cropper-point.point-n {
+  top: -3px;
+  left: 50%;
+
+  margin-left: -3px;
+
+  cursor: n-resize;
+}
+
+.cropper-point.point-w {
+  top: 50%;
+  left: -3px;
+
+  margin-top: -3px;
+
+  cursor: w-resize;
+}
+
+.cropper-point.point-s {
+  bottom: -3px;
+  left: 50%;
+
+  margin-left: -3px;
+
+  cursor: s-resize;
+}
+
+.cropper-point.point-ne {
+  top: -3px;
+  right: -3px;
+
+  cursor: ne-resize;
+}
+
+.cropper-point.point-nw {
+  top: -3px;
+  left: -3px;
+
+  cursor: nw-resize;
+}
+
+.cropper-point.point-sw {
+  bottom: -3px;
+  left: -3px;
+
+  cursor: sw-resize;
+}
+
+.cropper-point.point-se {
+  right: -3px;
+  bottom: -3px;
+
+  width: 20px;
+  height: 20px;
+
+  cursor: se-resize;
+
+  opacity: 1;
+
+  filter: alpha(opacity=100);
+}
+
+.cropper-point.point-se:before {
+  position: absolute;
+  right: -50%;
+  bottom: -50%;
+
+  display: block;
+
+  width: 200%;
+  height: 200%;
+
+  content: ' ';
+
+  opacity: 0;
+  background-color: #39f;
+
+  filter: alpha(opacity=0);
+}
+
+@media (min-width: 768px) {
+  .cropper-point.point-se {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (min-width: 992px) {
+  .cropper-point.point-se {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cropper-point.point-se {
+    width: 5px;
+    height: 5px;
+
+    opacity: .75;
+
+    filter: alpha(opacity=75);
+  }
+}
+
+.cropper-invisible {
+  opacity: 0;
+
+  filter: alpha(opacity=0);
+}
+
+.cropper-bg {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA3NCSVQICAjb4U/gAAAABlBMVEXMzMz////TjRV2AAAACXBIWXMAAArrAAAK6wGCiw1aAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAABFJREFUCJlj+M/AgBVhF/0PAH6/D/HkDxOGAAAAAElFTkSuQmCC');
+}
+
+.cropper-hide {
+  position: absolute;
+
+  display: block;
+
+  width: 0;
+  height: 0;
+}
+
+.cropper-hidden {
+  display: none !important;
+}
+
+.cropper-move {
+  cursor: move;
+}
+
+.cropper-crop {
+  cursor: crosshair;
+}
+
+.cropper-disabled .cropper-drag-box,
+.cropper-disabled .cropper-face,
+.cropper-disabled .cropper-line,
+.cropper-disabled .cropper-point {
+  cursor: not-allowed;
+}
+
+.list {
+  margin: 20px 0;
+  padding: 10px;
+  list-style: none;
+}
+.list li {
+    font-size: 16px;
+    border-radius: 5px;
+    height: 40px;
+    padding-left: 8px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    position: relative;
+}
+.list li:last-child {
+      margin-bottom: 0;
+}
+.list li .close {
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: 8px;
+}
+.list li:hover .close {
+      display: block;
+}
+
+@-webkit-keyframes spin {
+to {
+    -webkit-transform: rotate(1turn);
+}
+}
+@keyframes spin {
+to {
+    -webkit-transform: rotate(1turn);
+}
+}
+.spinner {
+  color: #666;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 60px;
+}
+.loading {
+  display: inline-block;
+  -webkit-animation: spin 1s linear infinite;
+          animation: spin 1s linear infinite;
+}
+
+/*# sourceMappingURL=../sourceMap/css/admin.css.map*/

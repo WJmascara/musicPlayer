@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head><script src="//cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+<script src="//cdn.bootcss.com/vue/2.1.7/vue.js"></script>
+  <style>
+    #app {
+        margin:30px 0 0 30px;
+    }
+    .tit_box {
+        font-size: 30px;
+        color: #999;
+        margin-bottom: 0;
+    }
+    .choose_btns a {
+        padding: 5px 10px;
+        text-decoration: none;
+        margin-top: 10px;
+        display: inline-block;
+        background-color: #eee;
+        border-radius: 4px;
+        color: #444;
+    }
+    .choose_btns a.active {
+        color:#039be5;
+    }
+    .choose_btns a:first-child {
+        margin-right:15px;
+    }
+  </style>
+<link href="css/main.css" rel="stylesheet"></head>
+<body>
+  <div id="app">
+    <h2 class="tit_box">Tour of Heroes</h2>
+    <div class="choose_btns"><a href="javascript:;" v-on:click="showDashBoard()"> DashBoard </a><a href="javascript:;" v-on:click="showHeroes()"> Heroes</a></div>
+    <heroes></heroes>
+    <dash-board></dash-board>
+  </div>
+<script type="text/javascript" src="js/main.js"></script></body>
