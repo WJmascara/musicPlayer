@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"><script src="http://cdn.bootcss.com/vue/2.1.7/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    body {
+        background: #f5f5f5;
+    }
+    #app {
+        padding-top: 10em;
+    }
+    .nav_box {
+        position: fixed;
+        height: 5em;
+        width: 100%;
+        background-color: #252e39;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        font-size: 2em;
+        color: #fff;
+        
+    }
+    .nav-tab {
+        display: inline-block;
+        height: 5em;
+        line-height: 5em;
+        text-align: center;
+        width:30%;
+        color:#fff;
+        cursor: pointer;
+    }
+  </style>
+<link href="css/ZH_index.css" rel="stylesheet"></head>
+<body>
+  <div id="app">
+    <div class="tab_head_module">
+      <div class="nav_box">
+        <router-link class="nav-tab" :to="{name:'dayNews'}">首页</router-link>
+        <router-link class="nav-tab" :to="{path:'/components/themeNews'}"> 主题日报</router-link>
+        <div class="nav-rail"></div>
+      </div>
+    </div>
+    <router-view></router-view>
+  </div>
+<script type="text/javascript" src="js/ZH_index.js"></script></body>
