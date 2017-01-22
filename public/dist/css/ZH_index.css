@@ -11,8 +11,8 @@ body[data-v-09f6d7b8] {
 }
 .news_list_module .news_list li a[data-v-09f6d7b8] {
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  display: -webkit-flex;
   display: -moz-flex;
   margin-bottom: 15px;
   padding: 10px;
@@ -25,9 +25,9 @@ body[data-v-09f6d7b8] {
     height: 6em;
 }
 .news_list_module .news_list li a .new_tit[data-v-09f6d7b8] {
+    -webkit-flex: 1;
     -moz-flex: 1;
     -webkit-box-flex: 1;
-        -ms-flex: 1;
             flex: 1;
     font-size: 2em;
     color: #333;
@@ -104,8 +104,8 @@ body[data-v-09f6d7b8] {
   padding: 20px;
   margin-top: 30px;
   display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  display: -webkit-flex;
   display: -moz-flex;
   background: #fff;
   color: #333;
@@ -120,9 +120,9 @@ body[data-v-09f6d7b8] {
 }
 .theme_list_module .card_box .card_info[data-v-a717583a] {
     margin: 20px;
+    -webkit-flex: 1;
     -moz-flex: 1;
     -webkit-box-flex: 1;
-        -ms-flex: 1;
             flex: 1;
     font-size: 2em;
 }

@@ -49,15 +49,15 @@ let exportConfig = {
                 include: basePath
             },{
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({fallbackLoader:'style-loader', loader:'css-loader?sourceMap!postcss-loader'}),
+                loader: ExtractTextPlugin.extract({fallbackLoader:'style-loader', loader:'css-loader?sourceMap'}),
                 include: basePath
             },{
                 test: /\.sass$/,
-                loader: ExtractTextPlugin.extract({fallbackLoader:'style-loader', loader:'css-loader?sourceMap!postcss-loader!sass-loader?indentedSyntax'}),
+                loader: ExtractTextPlugin.extract({fallbackLoader:'style-loader', loader:'css-loader?sourceMap!sass-loader?indentedSyntax'}),
                 include: basePath
             },{
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract({fallbackLoader:'style-loader', loader:'css-loader?sourceMap!postcss-loader!sass-loader'}),
+                loader: ExtractTextPlugin.extract({fallbackLoader:'style-loader', loader:'css-loader?sourceMap!sass-loader'}),
                 include: basePath
             },
             {

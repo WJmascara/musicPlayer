@@ -1,7 +1,7 @@
 <template lang="pug">
     .news_list_module
         .day_news(v-for="list in lists")
-            h2.date_tit  {{date}}
+            h2.date_tit  {{list.date}}
             .news_list
                 ul
                     li(v-for="item in list.stories")
@@ -18,7 +18,6 @@
         name:"news_list_module",
         data(){
             return{
-                date:"",
                 lists:[]
             }
         },
@@ -48,8 +47,21 @@
 
                 return current_date;
             },
+            getOutPutDate:function(dateString){
+
+                var date = new Date();
+
+                var dateStr = dateString.substr(0,4) + "-" + dateString.substr(4,2) + "-" + dateString.substr(6,2);
+                var currentDate_milliseconds = new Date(dateStr).getTime() + 24*60*60*1000;
+                date.setTime(currentDate_milliseconds);
+
+                var current_date2 = date.getFullYear() + "-" + this.addZero(date.getMonth()+1) +  "-" + this.addZero(date.getDate());
+                
+                return current_date2;
+            },
             getSuccessList:function(data) {
-                this.date = this.getDate();
+
+                data.date = this.getOutPutDate(data.date);
                 this.lists.push(data);
             },
             getNewsList:function(){

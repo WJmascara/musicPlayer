@@ -68,7 +68,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
@@ -114,9 +114,9 @@ if (__vue_options__.functional) {console.error("[vue-loader] dayNews.vue: functi
 module.exports = __vue_exports__
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
@@ -161,9 +161,9 @@ if (__vue_options__.functional) {console.error("[vue-loader] newsDetail.vue: fun
 module.exports = __vue_exports__
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
@@ -209,9 +209,9 @@ if (__vue_options__.functional) {console.error("[vue-loader] themeNews.vue: func
 module.exports = __vue_exports__
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
@@ -256,9 +256,9 @@ if (__vue_options__.functional) {console.error("[vue-loader] themeNewsDetail.vue
 module.exports = __vue_exports__
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
@@ -304,15 +304,15 @@ if (__vue_options__.functional) {console.error("[vue-loader] themeNewsList.vue: 
 module.exports = __vue_exports__
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable no-unused-vars*/
 /*!
@@ -9891,7 +9891,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable
     if (true) {
         !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
             return jQuery;
-        }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+        }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
     }
 
     var
@@ -9925,9 +9926,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable
     return jQuery;
 });
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -9937,7 +9938,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "day_news"
     }, [_c('h2', {
       staticClass: "date_tit"
-    }, [_vm._v(" " + _vm._s(_vm.date))]), _c('div', {
+    }, [_vm._v(" " + _vm._s(list.date))]), _c('div', {
       staticClass: "news_list"
     }, [_c('ul', _vm._l((list.stories), function(item) {
       return _c('li', [_c('router-link', {
@@ -9979,9 +9980,9 @@ if (false) {
   }
 }
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -10012,9 +10013,9 @@ if (false) {
   }
 }
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -10052,9 +10053,9 @@ if (false) {
   }
 }
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -10093,9 +10094,9 @@ if (false) {
   }
 }
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -10133,42 +10134,42 @@ if (false) {
   }
 }
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -10185,11 +10186,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 
 
-/* harmony default export */ exports["default"] = {
+/* harmony default export */ __webpack_exports__["default"] = {
     name: "news_list_module",
     data() {
         return {
-            date: "",
             lists: []
         };
     },
@@ -10218,8 +10218,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
             return current_date;
         },
+        getOutPutDate: function (dateString) {
+
+            var date = new Date();
+
+            var dateStr = dateString.substr(0, 4) + "-" + dateString.substr(4, 2) + "-" + dateString.substr(6, 2);
+            var currentDate_milliseconds = new Date(dateStr).getTime() + 24 * 60 * 60 * 1000;
+            date.setTime(currentDate_milliseconds);
+
+            var current_date2 = date.getFullYear() + "-" + this.addZero(date.getMonth() + 1) + "-" + this.addZero(date.getDate());
+
+            return current_date2;
+        },
         getSuccessList: function (data) {
-            this.date = this.getDate();
+
+            data.date = this.getOutPutDate(data.date);
             this.lists.push(data);
         },
         getNewsList: function () {
@@ -10242,12 +10255,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
     }
 };
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -10260,7 +10273,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ exports["default"] = {
+/* harmony default export */ __webpack_exports__["default"] = {
     name: "details_module",
     data() {
         return {
@@ -10294,12 +10307,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
     }
 };
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -10310,7 +10323,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ exports["default"] = {
+/* harmony default export */ __webpack_exports__["default"] = {
     name: "theme_news_module",
     data() {
         return {
@@ -10340,19 +10353,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
     }
 };
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
 //
 //
 
-/* harmony default export */ exports["default"] = {
+/* harmony default export */ __webpack_exports__["default"] = {
 	name: "theme_news_detail",
 	data() {
 		return {
@@ -10385,12 +10398,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 	}
 };
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -10399,7 +10412,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ exports["default"] = {
+/* harmony default export */ __webpack_exports__["default"] = {
     name: "theme_list_module",
     data() {
         return {
@@ -10444,11 +10457,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
     }
 };
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue__ = __webpack_require__(1);
@@ -10459,7 +10473,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue__);
-"use strict";
+
 
 
 
@@ -10478,6 +10492,6 @@ new Vue({
     router
 }).$mount("#app");
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=../sourceMap/js/ZH_index.js.map
