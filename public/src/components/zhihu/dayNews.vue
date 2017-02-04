@@ -23,7 +23,6 @@
         },
         created(){
             this.getNewsList();
-
         },
         methods:{
             addZero:function(num) {
@@ -36,7 +35,7 @@
 
                 var today = new Date();
                 var yesterday_milliseconds = today.getTime()-1000*60*60*24*i;
-
+                                                           
                 var yesterday=new Date();      
                 yesterday.setTime(yesterday_milliseconds);
 
