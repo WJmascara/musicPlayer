@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"><script src="http://cdn.bootcss.com/vue/2.1.7/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.js"></script>
+  <style>
+    body {
+        background: #f5f5f5;
+    }
+    #app {
+        padding-top: 2.3rem;
+    }
+    .nav_box {
+        position: fixed;
+        left:0;
+        top:0;
+        z-index:999;
+        width:100%;
+        display: flex;
+        display: -webkit-flex;
+        background:#fff;
+        height:2rem;
+        line-height:2rem;
+    }
+    .nav_box a {
+        display:block;
+        -webkit-flex:1;
+        flex:1;
+        text-align:center;
+        font-size:.6rem;
+        color:#333;
+        text-decoration:none;
+    }
+    .nav_box a.active {
+        color: #31c27c;
+        border-bottom: 2px solid #31c27c;
+    }
+  </style>
+<link href="css/musicIndex.css" rel="stylesheet"></head>
+<body>
+  <div id="app">
+    <div class="nav_box"><a href="#">推荐</a><a class="active" href="#">排行榜</a><a href="#">搜索</a></div>
+    <top-list></top-list>
+  </div>
+<script type="text/javascript" src="js/musicIndex.js"></script></body>

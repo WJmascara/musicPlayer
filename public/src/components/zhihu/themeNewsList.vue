@@ -1,8 +1,8 @@
 <template lang="pug">
     .theme_list_module
         router-link(:to="{ name:'themeNewsDetail', params:{ id:item.id } }",v-for="(item,i) in items",class="card_box")
-            .card_img(:class="{'hide': item.isHide}")
-                <img v-bind:src="item.images">
+            div(v-if="item.images")
+                <img v-bind:src="item.images[0]">
             .card_info {{item.title}}
 </template>
 <script>
@@ -23,17 +23,17 @@
 
                 _that.items = data.stories;
 
-                data.stories.forEach(function(value,index,array){ 
+                // data.stories.forEach(function(value,index,array){ 
 
-                    if( value.images ) {
+                //     if( value.images ) {
 
-                        _that.items[index].isHide = false;
+                //         _that.items[index].isHide = false;
 
-                    }else {
+                //     }else {
 
-                        _that.items[index].isHide = true;
-                    }
-                })
+                //         _that.items[index].isHide = true;
+                //     }
+                // })
 
             },
             getList:function(){

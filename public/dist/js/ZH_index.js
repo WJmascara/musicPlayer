@@ -63,86 +63,83 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var __vue_exports__, __vue_options__
-var __vue_styles__ = {}
-
-/* styles */
-__webpack_require__(12)
-
-/* script */
-__vue_exports__ = __webpack_require__(17)
-
-/* template */
-var __vue_template__ = __webpack_require__(7)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  scopeId,
+  cssModules
 ) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\zhihu\\dayNews.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-09f6d7b8"
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-09f6d7b8", __vue_options__)
-  } else {
-    hotAPI.reload("data-v-09f6d7b8", __vue_options__)
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
   }
-})()}
-if (__vue_options__.functional) {console.error("[vue-loader] dayNews.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 
-module.exports = __vue_exports__
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  // inject cssModules
+  if (cssModules) {
+    var computed = options.computed || (options.computed = {})
+    Object.keys(cssModules).forEach(function (key) {
+      var module = cssModules[key]
+      computed[key] = function () { return module }
+    })
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __vue_exports__, __vue_options__
-var __vue_styles__ = {}
 
 /* styles */
 __webpack_require__(15)
 
-/* script */
-__vue_exports__ = __webpack_require__(18)
-
-/* template */
-var __vue_template__ = __webpack_require__(10)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\zhihu\\newsDetail.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(18),
+  /* template */
+  __webpack_require__(10),
+  /* scopeId */
+  "data-v-39d6d522",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/zhihu/dayNews.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] dayNews.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -151,46 +148,36 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7f6c7feb", __vue_options__)
+    hotAPI.createRecord("data-v-39d6d522", Component.options)
   } else {
-    hotAPI.reload("data-v-7f6c7feb", __vue_options__)
+    hotAPI.reload("data-v-39d6d522", Component.options)
   }
 })()}
-if (__vue_options__.functional) {console.error("[vue-loader] newsDetail.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 
-module.exports = __vue_exports__
+module.exports = Component.exports
 
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __vue_exports__, __vue_options__
-var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(14)
+__webpack_require__(16)
 
-/* script */
-__vue_exports__ = __webpack_require__(19)
-
-/* template */
-var __vue_template__ = __webpack_require__(9)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\zhihu\\themeNews.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-6d528ca5"
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(19),
+  /* template */
+  __webpack_require__(11),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/zhihu/newsDetail.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] newsDetail.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -199,45 +186,36 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6d528ca5", __vue_options__)
+    hotAPI.createRecord("data-v-7b40db7e", Component.options)
   } else {
-    hotAPI.reload("data-v-6d528ca5", __vue_options__)
+    hotAPI.reload("data-v-7b40db7e", Component.options)
   }
 })()}
-if (__vue_options__.functional) {console.error("[vue-loader] themeNews.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 
-module.exports = __vue_exports__
+module.exports = Component.exports
 
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __vue_exports__, __vue_options__
-var __vue_styles__ = {}
 
 /* styles */
 __webpack_require__(13)
 
-/* script */
-__vue_exports__ = __webpack_require__(20)
-
-/* template */
-var __vue_template__ = __webpack_require__(8)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\zhihu\\themeNewsDetail.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(20),
+  /* template */
+  __webpack_require__(8),
+  /* scopeId */
+  "data-v-2528d78f",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/zhihu/themeNews.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] themeNews.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -246,46 +224,36 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c1d72d6", __vue_options__)
+    hotAPI.createRecord("data-v-2528d78f", Component.options)
   } else {
-    hotAPI.reload("data-v-4c1d72d6", __vue_options__)
+    hotAPI.reload("data-v-2528d78f", Component.options)
   }
 })()}
-if (__vue_options__.functional) {console.error("[vue-loader] themeNewsDetail.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 
-module.exports = __vue_exports__
+module.exports = Component.exports
 
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __vue_exports__, __vue_options__
-var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(16)
+__webpack_require__(14)
 
-/* script */
-__vue_exports__ = __webpack_require__(21)
-
-/* template */
-var __vue_template__ = __webpack_require__(11)
-__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-if (
-  typeof __vue_exports__.default === "object" ||
-  typeof __vue_exports__.default === "function"
-) {
-if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-__vue_options__ = __vue_exports__ = __vue_exports__.default
-}
-if (typeof __vue_options__ === "function") {
-  __vue_options__ = __vue_options__.options
-}
-__vue_options__.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\zhihu\\themeNewsList.vue"
-__vue_options__.render = __vue_template__.render
-__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-a717583a"
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(21),
+  /* template */
+  __webpack_require__(9),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/zhihu/themeNewsDetail.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] themeNewsDetail.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {
@@ -294,24 +262,61 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a717583a", __vue_options__)
+    hotAPI.createRecord("data-v-33066640", Component.options)
   } else {
-    hotAPI.reload("data-v-a717583a", __vue_options__)
+    hotAPI.reload("data-v-33066640", Component.options)
   }
 })()}
-if (__vue_options__.functional) {console.error("[vue-loader] themeNewsList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 
-module.exports = __vue_exports__
+module.exports = Component.exports
 
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(17)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(22),
+  /* template */
+  __webpack_require__(12),
+  /* scopeId */
+  "data-v-ae11cc66",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/zhihu/themeNewsList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] themeNewsList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ae11cc66", Component.options)
+  } else {
+    hotAPI.reload("data-v-ae11cc66", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable no-unused-vars*/
@@ -9927,7 +9932,80 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*eslint-disable
 });
 
 /***/ }),
-/* 7 */
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "theme_news_module"
+  }, _vm._l((_vm.items), function(item) {
+    return _c('router-link', {
+      staticClass: "card_item",
+      attrs: {
+        "to": {
+          name: 'themeNewsList',
+          params: {
+            id: item.id
+          }
+        }
+      }
+    }, [_c('div', {
+      staticClass: "card_img",
+      style: ({
+        backgroundImage: 'url(' + item.thumbnail + ')'
+      })
+    }), _c('div', {
+      staticClass: "card_info"
+    }, [_c('div', {
+      staticClass: "card_tit"
+    }, [_vm._v(_vm._s(item.name))]), _c('div', {
+      staticClass: "card_description"
+    }, [_vm._v(_vm._s(item.description))])])])
+  }))
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2528d78f", module.exports)
+  }
+}
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "theme_news_detail"
+  }, [_c('div', {
+    staticClass: "content_inner",
+    domProps: {
+      "innerHTML": _vm._s(_vm.bodyHtml)
+    }
+  }, [_vm._v(_vm._s(_vm.bodyHtml))]), _c('link', {
+    directives: [{
+      name: "ref",
+      rawName: "v-ref",
+      value: (_vm.head),
+      expression: "head"
+    }],
+    attrs: {
+      "href": _vm.css,
+      "rel": "stylesheet"
+    }
+  })])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-33066640", module.exports)
+  }
+}
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -9976,85 +10054,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-09f6d7b8", module.exports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-39d6d522", module.exports)
   }
 }
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "theme_news_detail"
-  }, [_c('div', {
-    staticClass: "content_inner",
-    domProps: {
-      "innerHTML": _vm._s(_vm.bodyHtml)
-    }
-  }, [_vm._v(_vm._s(_vm.bodyHtml))]), _c('link', {
-    directives: [{
-      name: "ref",
-      rawName: "v-ref",
-      value: (_vm.head),
-      expression: "head"
-    }],
-    attrs: {
-      "href": _vm.css,
-      "rel": "stylesheet"
-    }
-  })])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-4c1d72d6", module.exports)
-  }
-}
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "theme_news_module"
-  }, _vm._l((_vm.items), function(item) {
-    return _c('router-link', {
-      staticClass: "card_item",
-      attrs: {
-        "to": {
-          name: 'themeNewsList',
-          params: {
-            id: item.id
-          }
-        }
-      }
-    }, [_c('div', {
-      staticClass: "card_img",
-      style: ({
-        backgroundImage: 'url(' + item.thumbnail + ')'
-      })
-    }), _c('div', {
-      staticClass: "card_info"
-    }, [_c('div', {
-      staticClass: "card_tit"
-    }, [_vm._v(_vm._s(item.name))]), _c('div', {
-      staticClass: "card_description"
-    }, [_vm._v(_vm._s(item.description))])])])
-  }))
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-6d528ca5", module.exports)
-  }
-}
-
-/***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10090,12 +10095,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7f6c7feb", module.exports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7b40db7e", module.exports)
   }
 }
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10112,16 +10117,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    }, [_c('div', {
-      staticClass: "card_img",
-      class: {
-        'hide': item.isHide
-      }
-    }, [_c('img', {
+    }, [(item.images) ? _c('div', [_c('img', {
       attrs: {
-        "src": item.images
+        "src": item.images[0]
       }
-    })]), _c('div', {
+    })]) : _vm._e(), _c('div', {
       staticClass: "card_info"
     }, [_vm._v(_vm._s(item.title))])])
   }))
@@ -10130,15 +10130,9 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-a717583a", module.exports)
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-ae11cc66", module.exports)
   }
 }
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 13 */
@@ -10166,6 +10160,12 @@ if (false) {
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10256,7 +10256,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10308,7 +10308,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10354,7 +10354,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10399,7 +10399,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10429,16 +10429,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             _that.items = data.stories;
 
-            data.stories.forEach(function (value, index, array) {
+            // data.stories.forEach(function(value,index,array){ 
 
-                if (value.images) {
+            //     if( value.images ) {
 
-                    _that.items[index].isHide = false;
-                } else {
+            //         _that.items[index].isHide = false;
 
-                    _that.items[index].isHide = true;
-                }
-            });
+            //     }else {
+
+            //         _that.items[index].isHide = true;
+            //     }
+            // })
         },
         getList: function () {
 
@@ -10458,20 +10459,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue__);
 
 
@@ -10481,8 +10482,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__webpack_require__(5);
-window.$ = window.jQuery = __webpack_require__(6);
+__webpack_require__(6);
+window.$ = window.jQuery = __webpack_require__(7);
 
 var router = new VueRouter({
     routes: [{ name: 'dayNews', path: '/', component: __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue___default.a }, { name: 'newsDetail', path: '/name/:id', component: __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue___default.a }, { name: 'themeNews', path: '/components/:name', component: __WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue___default.a }, { name: 'themeNewsList', path: '/themeNewsList/:id', component: __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue___default.a }, { name: 'themeNewsDetail', path: '/themeNewsDetail/:id', component: __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue___default.a }]

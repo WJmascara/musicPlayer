@@ -1,0 +1,16 @@
+doctype html
+head
+    meta(charset="utf-8")
+    <script src="http://cdn.bootcss.com/vue/2.1.7/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    style.
+        .nav-box a {
+            display:block;
+            color:blue;
+        }
+body
+    #app
+        .nav_box
+            router-link(:to="{path:'/foo'}") Go To Foo
+            router-link(:to="{path:'/bar/333'}") Go To Bar
+        router-view
