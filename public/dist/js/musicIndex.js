@@ -63,74 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue__);
-
-
-__webpack_require__(1);
-
-
-
-new Vue({
-    el: "#app",
-    components: { topList: __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default.a }
-});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(5)
-
-var Component = __webpack_require__(3)(
-  /* script */
-  __webpack_require__(6),
-  /* template */
-  __webpack_require__(4),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/topList.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] topList.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5b459e88", Component.options)
-  } else {
-    hotAPI.reload("data-v-5b459e88", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = function normalizeComponent (
@@ -183,6 +120,88 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(7)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(8),
+  /* template */
+  __webpack_require__(5),
+  /* scopeId */
+  "data-v-fb7ab7b6",
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\songsList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] songsList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fb7ab7b6", Component.options)
+  } else {
+    hotAPI.reload("data-v-fb7ab7b6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(6)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(9),
+  /* template */
+  __webpack_require__(4),
+  /* scopeId */
+  "data-v-5b459e88",
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\topList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] topList.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5b459e88", Component.options)
+  } else {
+    hotAPI.reload("data-v-5b459e88", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -192,8 +211,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "list_wrap"
   }, _vm._l((_vm.items), function(item, i) {
-    return _c('div', {
-      staticClass: "item_box"
+    return _c('router-link', {
+      staticClass: "item_box",
+      attrs: {
+        "to": {
+          name: 'songsList',
+          params: {
+            id: item.id
+          }
+        }
+      }
     }, [_c('div', {
       staticClass: "img_box"
     }, [_c('img', {
@@ -204,7 +231,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "num_cont"
     }, [_c('i', {
       staticClass: "icon_listen"
-    }, [_vm._v(_vm._s(item.listenCount) + "万")])])]), _c('div', {
+    }), _vm._v(_vm._s(_vm._f("cutNum")(item.listenCount)) + "万")])]), _c('div', {
       staticClass: "songs_box"
     }, [_c('div', {
       staticClass: "tit_cont"
@@ -231,16 +258,134 @@ if (false) {
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "songList_module"
+  }, [_c('div', {
+    staticClass: "img_box"
+  }, [_c('img', {
+    attrs: {
+      "src": _vm.dataModel.topinfo.pic_album
+    }
+  }), _c('div', {
+    staticClass: "gradient_bg"
+  }), _c('div', {
+    staticClass: "info_box"
+  }, [_c('div', {
+    staticClass: "txt_cont"
+  }, [_c('p', [_vm._v(_vm._s(_vm.dataModel.topinfo.ListName))]), _c('p', [_vm._v(_vm._s(_vm.dataModel.update_time) + "更新")])]), _c('div', {
+    staticClass: "broad_cast"
+  })])]), _c('div', {
+    staticClass: "songs_list",
+    style: (_vm.formatStyle())
+  }, [_c('ul', _vm._l((_vm.dataModel.songlist), function(item, i) {
+    return _c('li', [_c('span', {
+      staticClass: "num_cont"
+    }, [_vm._v(_vm._s(i + 1))]), _c('div', {
+      staticClass: "song_cont"
+    }, [_c('p', {
+      staticClass: "song_name"
+    }, [_vm._v(_vm._s(item.data.songname))]), _c('p', {
+      staticClass: "singer_name"
+    }, [_vm._v(_vm._s(item.data.singer[0].name) + _vm._s(item.data.albumname ? " · " + item.data.albumname : "") + " " + _vm._s(item.data.albumdesc ? " · " + item.data.albumdesc : ""))])])])
+  }))])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-fb7ab7b6", module.exports)
+  }
+}
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 6 */
+/* 7 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+	name: "songList_module",
+	data() {
+		return {
+			dataModel: {
+				topinfo: "",
+				songlist: []
+			}
+		};
+	},
+	created() {
+		this.getList();
+	},
+	methods: {
+		getSuccessList: function (data) {
+			this.dataModel = data;
+		},
+		getList: function () {
+
+			var that = this;
+			$.ajax({
+				url: "https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&" + "topid=" + that.$route.params.id + "&jsonpCallback=?",
+				type: "get",
+				dataType: "jsonp",
+				jsonp: "callback"
+			}).done(this.getSuccessList).fail(function () {}).always(function () {});
+		},
+		formatStyle: function () {
+
+			if (this.dataModel.color) {
+				var color = this.dataModel.color;
+
+				return {
+					"background": "#000"
+				};
+			} else {
+				return;
+			}
+		}
+	}
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -271,7 +416,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         getSuccessList: function (data) {
-
             this.items = data.data.topList;
         },
         getList: function () {
@@ -290,8 +434,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(1);
             });
         }
+    },
+    filters: {
+        cutNum: function (value) {
+
+            var str = String(value);
+            var str_a = str.substr(0, str.length - 3);
+            var str_b = str_a.substr(0, str_a.length - 1);
+            var str_c = Math.round(parseInt(str_a.charAt(str_a.length - 1)));
+
+            var result = str_b + "," + str_c;
+
+            return result;
+        }
     }
 };
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue__);
+
+
+__webpack_require__(3);
+
+
+
+
+var router = new VueRouter({
+	routes: [{
+		name: "topList", path: "/topList", component: __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default.a
+	}, {
+		name: "songsList", path: "/songsList/:id", component: __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue___default.a
+	}]
+});
+
+new Vue({
+	router: router
+}).$mount("#app");
 
 /***/ })
 /******/ ]);

@@ -31,15 +31,18 @@
         color:#333;
         text-decoration:none;
     }
-    .nav_box a.active {
+    .nav_box a.router-link-active {
         color: #31c27c;
-        border-bottom: 2px solid #31c27c;
-    }
+        border-bottom: 4px solid #31c27c;
+    } 
+    
   </style>
 <link href="css/musicIndex.css" rel="stylesheet"></head>
 <body>
   <div id="app">
-    <div class="nav_box"><a href="#">推荐</a><a class="active" href="#">排行榜</a><a href="#">搜索</a></div>
-    <top-list></top-list>
+    <div class="nav_box"><a>推荐</a>
+      <router-link :to="{name:'topList'}">排行榜</router-link><a>搜索</a>
+    </div>
+    <router-view></router-view>
   </div>
 <script type="text/javascript" src="js/musicIndex.js"></script></body>

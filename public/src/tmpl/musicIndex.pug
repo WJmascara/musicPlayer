@@ -32,14 +32,15 @@ head
             color:#333;
             text-decoration:none;
         }
-        .nav_box a.active {
+        .nav_box a.router-link-active {
             color: #31c27c;
-            border-bottom: 2px solid #31c27c;
-        }
+            border-bottom: 4px solid #31c27c;
+        } 
+
 body
     #app
         .nav_box
-            a(href="#") 推荐
-            a(href="#",class="active") 排行榜
-            a(href="#") 搜索
-        top-list
+            a() 推荐
+            router-link(:to="{name:'topList'}") 排行榜
+            a() 搜索
+        router-view

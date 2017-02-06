@@ -1,11 +1,12 @@
 <template lang="pug">
     .topList_module
         .list_wrap
-            .item_box(v-for="(item,i) in items")
+            router-link(class="item_box",v-for="(item,i) in items",v-bind:to="{name:'songsList',params:{id:item.id}}")
                 .img_box
                     img(:src="item.picUrl")
                     span.num_cont
-                        i.icon_listen {{item.listenCount}}万
+                        i.icon_listen 
+                        | {{ item.listenCount | cutNum }}万
                 .songs_box
                     .tit_cont {{item.topTitle}}
                     .list_cont
@@ -28,9 +29,7 @@
         },
         methods:{
             getSuccessList:function(data){
-
                 this.items = data.data.topList;
-
             },
             getList:function(){
 
@@ -48,12 +47,24 @@
                 }).always(function(){
                     console.log(1);
                 })
+            }
+        },
+        filters:{
+            cutNum: function(value) {
 
+                var str = String(value);
+                var str_a = str.substr(0,str.length-3);
+                var str_b = str_a.substr(0,str_a.length-1);
+                var str_c = Math.round(parseInt(str_a.charAt(str_a.length-1)));
+
+                var result = str_b +　"," + str_c;
+
+                return result;
             }
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .topList_module {
         .list_wrap {
             padding: .3rem;
@@ -65,6 +76,7 @@
                 display:flex;
                 display:-webkit-flex;
                 height:3.5rem;
+                color: #333;
                 .img_box {
                     position: relative;
                     width:3.5rem;
