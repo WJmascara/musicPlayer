@@ -528,7 +528,7 @@ body {
           margin-left: 10px;
 }
 
-.songList_module .songs_list li .song_cont .song_name[data-v-fb7ab7b6], .songList_module .songs_list li .song_cont .singer_name[data-v-fb7ab7b6] {
+.songList_module .songs_list .item_box .song_cont .song_name[data-v-fb7ab7b6], .songList_module .songs_list .item_box .song_cont .singer_name[data-v-fb7ab7b6] {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -616,40 +616,99 @@ body {
         border-width: .5rem 0 .5rem .6rem;
         border-style: solid;
 }
-.songList_module .songs_list li[data-v-fb7ab7b6] {
-  padding-top: 4.8px;
-  padding-top: .3rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  display: -webkit-flex;
-  color: #fff;
-  line-height: 1.6;
+.songList_module .songs_list[data-v-fb7ab7b6] {
+  background: #000;
 }
-.songList_module .songs_list li .num_cont[data-v-fb7ab7b6] {
-    width: 24px;
-    width: 1.5rem;
-    text-align: center;
-    font-size: 9.6px;
-    font-size: .6rem;
+.songList_module .songs_list .item_box[data-v-fb7ab7b6] {
+    display: block;
+    padding-top: 4.8px;
+    padding-top: .3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    color: #fff;
+    line-height: 1.6;
 }
-.songList_module .songs_list li .song_cont[data-v-fb7ab7b6] {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    width: 0%;
-    padding: 0 4.8px 4.8px 0;
-    padding: 0 .3rem .3rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, .35);
+.songList_module .songs_list .item_box .num_cont[data-v-fb7ab7b6] {
+      width: 24px;
+      width: 1.5rem;
+      text-align: center;
+      font-size: 9.6px;
+      font-size: .6rem;
 }
-.songList_module .songs_list li .song_cont .song_name[data-v-fb7ab7b6] {
-      font-size: 8.8px;
-      font-size: .55rem;
+.songList_module .songs_list .item_box .song_cont[data-v-fb7ab7b6] {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      width: 0%;
+      padding: 0 4.8px 4.8px 0;
+      padding: 0 .3rem .3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .35);
 }
-.songList_module .songs_list li .song_cont .singer_name[data-v-fb7ab7b6] {
-      font-size: 7.2px;
-      font-size: .45rem;
-      color: rgba(255, 255, 255, .6);
+.songList_module .songs_list .item_box .song_cont .song_name[data-v-fb7ab7b6] {
+        font-size: 8.8px;
+        font-size: .55rem;
+}
+.songList_module .songs_list .item_box .song_cont .singer_name[data-v-fb7ab7b6] {
+        font-size: 7.2px;
+        font-size: .45rem;
+        color: rgba(255, 255, 255, .6);
+}
+.songList_module .songs_list .item_box:last-child .song-cont[data-v-fb7ab7b6] {
+      border-bottom: none;
+}
+
+.song_module {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .5);
+}
+.song_module .music_controls {
+    position: absolute;
+    left: 0;
+    bottom: 16px;
+    bottom: 1rem;
+    width: 100%;
+    color: #fff;
+    padding: 0 4.8px;
+    padding: 0 .3rem;
+    font-size: 6.4px;
+    font-size: .4rem;
+}
+.song_module .music_controls .progress {
+      display: -ms-flexbox;
+      display: flex;
+      display: -webkit-flex;
+      display: -webkit-box;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      width: 100%;
+}
+.song_module .music_controls .progress .progress_bar {
+        position: relative;
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
+        -webkit-flex: 1;
+        height: 2px;
+        background: #fff;
+        margin: 0 4.8px;
+        margin: 0 .3rem;
+}
+.song_module .music_controls .progress .progress_bar .load_bar {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          background: blue;
 }
 
 /*# sourceMappingURL=../sourceMap/css/musicIndex.css.map*/

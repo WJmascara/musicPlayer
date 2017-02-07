@@ -8,9 +8,9 @@
 					p {{dataModel.topinfo.ListName}}
 					p {{dataModel.update_time}}更新
 				.broad_cast
-		.songs_list(:style="formatStyle()")
+		.songs_list
 			ul
-				li(v-for="(item,i) in dataModel.songlist")
+				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:item.data.songid}",class="item_box")
 					span.num_cont {{i+1}}
 					div.song_cont
 						p.song_name {{item.data.songname}}
@@ -42,26 +42,14 @@
 					type:"get",
 					dataType:"jsonp",
 					jsonp:"callback"
+					
 				}).done(this.getSuccessList).fail(function(){
 
 				}).always(function(){
 
 				})
-			},
-			formatStyle:function(){
-
-				if( this.dataModel.color ) {
-					var color = this.dataModel.color;
-
-					return {
-						"background":"#000"
-					}
-					
-				}else {
-					return
-				}
-
 			}
+			
 		}
 	}
 </script>
@@ -138,7 +126,9 @@
 			}
 		}
 		.songs_list {
-			li {
+			background:#000;
+			.item_box {
+				display: block;
 				padding-top: .3rem;
 				display: flex;
 				display: -webkit-flex;
@@ -163,6 +153,11 @@
 						font-size: .45rem;
 						color: rgba(255,255,255,.6);
 						@extend %base-ellipsis;
+					}
+				}
+				&:last-child {
+					.song-cont {
+						border-bottom: none;
 					}
 				}
 			}

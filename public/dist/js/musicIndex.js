@@ -278,10 +278,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('p', [_vm._v(_vm._s(_vm.dataModel.topinfo.ListName))]), _c('p', [_vm._v(_vm._s(_vm.dataModel.update_time) + "更新")])]), _c('div', {
     staticClass: "broad_cast"
   })])]), _c('div', {
-    staticClass: "songs_list",
-    style: (_vm.formatStyle())
+    staticClass: "songs_list"
   }, [_c('ul', _vm._l((_vm.dataModel.songlist), function(item, i) {
-    return _c('li', [_c('span', {
+    return _c('router-link', {
+      staticClass: "item_box",
+      attrs: {
+        "to": {
+          name: 'song',
+          params: item.data.songid
+        }
+      }
+    }, [_c('span', {
       staticClass: "num_cont"
     }, [_vm._v(_vm._s(i + 1))]), _c('div', {
       staticClass: "song_cont"
@@ -362,20 +369,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				type: "get",
 				dataType: "jsonp",
 				jsonp: "callback"
+
 			}).done(this.getSuccessList).fail(function () {}).always(function () {});
-		},
-		formatStyle: function () {
-
-			if (this.dataModel.color) {
-				var color = this.dataModel.color;
-
-				return {
-					"background": "#000"
-				};
-			} else {
-				return;
-			}
 		}
+
 	}
 };
 
@@ -460,6 +457,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue__);
 
 
 __webpack_require__(3);
@@ -467,17 +466,163 @@ __webpack_require__(3);
 
 
 
+
 var router = new VueRouter({
 	routes: [{
-		name: "topList", path: "/topList", component: __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default.a
+		name: "topList", path: "/", component: __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default.a
 	}, {
 		name: "songsList", path: "/songsList/:id", component: __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue___default.a
+	}, {
+		name: "song", path: "/songsList/song/:id", component: __WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue___default.a
 	}]
 });
 
 new Vue({
 	router: router
 }).$mount("#app");
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(13)
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(14),
+  /* template */
+  __webpack_require__(12),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\song.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] song.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a5ccaa88", Component.options)
+  } else {
+    hotAPI.reload("data-v-a5ccaa88", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "song_module"
+  }, [_c('div', {
+    staticClass: "music_controls"
+  }, [_c('div', {
+    ref: "aa",
+    staticClass: "progress"
+  }, [_c('div', {
+    staticClass: "left_time"
+  }, [_vm._v(_vm._s(_vm.songData.beginTime))]), _c('div', {
+    staticClass: "progress_bar"
+  }, [_c('span', {
+    staticClass: "load_bar",
+    style: ({
+      width: '20%'
+    })
+  })]), _c('div', {
+    staticClass: "right_time"
+  }, [_vm._v(_vm._s(_vm.songData.eddTime))])])]), _c('audio', {
+    ref: "audio",
+    attrs: {
+      "src": _vm.songData.url
+    }
+  })])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-a5ccaa88", module.exports)
+  }
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+	name: "song_module",
+	data() {
+		return {
+			songData: {
+				url: "",
+				beginTime: "",
+				eddTime: ""
+			}
+		};
+	},
+	mounted() {
+		this.getSongData();
+	},
+	methods: {
+		getSongData: function () {
+
+			var that = this;
+			var song_url = "http://ws.stream.qqmusic.qq.com/" + this.$route.params.id + ".m4a?fromtag=46";
+			this.songData.url = song_url;
+
+			//获取audio元素
+			var audio = this.$refs.audio;
+			audio.addEventListener("loadedmetadata", function () {
+
+				that.songData.beginTime = that.getTime(0);
+				that.songData.eddTime = that.getTime(audio.duration);
+			});
+		},
+		getTime: function (time) {
+
+			var minutes = this.addZero(parseInt(time / 60));
+			var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0, 2)));
+			return minutes + ":" + seconds;
+		},
+		addZero: function (num) {
+			if (num > -1 && num < 10) {
+				num = "0" + num;
+			}
+			return num;
+		}
+	}
+};
 
 /***/ })
 /******/ ]);
