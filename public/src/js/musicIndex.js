@@ -15,7 +15,7 @@ var router = new VueRouter({
 			name:"songsList", path:"/songsList/:id", component:songsList
 		},
 		{
-			name:"song", path:"/songsList/song/:id", component:song
+			name:"song", path:"/songsList/song/:songid", component:song
 		}
 	]
 });

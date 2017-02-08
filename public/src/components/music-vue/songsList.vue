@@ -10,13 +10,14 @@
 				.broad_cast
 		.songs_list
 			ul
-				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:item.data.songid}",class="item_box")
+				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:{songid:item.data.songid}}",class="item_box")
 					span.num_cont {{i+1}}
 					div.song_cont
 						p.song_name {{item.data.songname}}
 						p.singer_name {{item.data.singer[0].name}}{{item.data.albumname?" · "+item.data.albumname:""}} {{item.data.albumdesc?" · "+item.data.albumdesc:""}}
 </template>
 <script>
+
 	export default {
 		name:"songList_module",
 		data(){
@@ -32,7 +33,7 @@
 		},
 		methods:{
 			getSuccessList:function(data){
-				this.dataModel = data;
+				this.dataModel = window.dataModel = data;
 			},
 			getList:function(){
 
