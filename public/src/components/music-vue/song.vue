@@ -1,5 +1,5 @@
 <template lang="pug">
-	.song_module(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')'}")
+	.song_module(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic_album:'')+')'}")
 		.mask_bg
 		.music_controls
 			.progress
@@ -8,15 +8,16 @@
 					span.load_bar(:style="{width:songData.loadedPercent}")
 				.right_time {{songData.endTime}}
 			.btns
-				a(href="javascript:;",class="prev_btn",v-on:click="prevSong()")
+				a(href="javascript:;",class="prev_btn",v-on:click="playNextSong('prev')")
 				a(href="javascript:;",class="broadCast_btn",:class="{paused:songData.isPaused}",v-on:click="playerPaused()")
-				a(href="javascript:;",class="next_btn",v-on:click="nextSong()")
+				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
+		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')',transform:'rotate('+songData.rotatedeg+')'}")
 		.song_list(:class="{show:isShow}")
 			ul
-				li(v-for="(item,i) in dataModel.songlist") {{item.data.songname}} {{item.data.singer[0].name}}
+				li(v-for="(item,i) in dataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
 			a(href="javascript:;",v-on:click="closeSongList()",class="close_btn") 关闭
-		audio(:src="getAudio()",ref="audio")
+		audio(:src="getAudio(this.$route.params.songid)",ref="audio")
 </template>
 <script>
 	export default {
@@ -28,18 +29,20 @@
 					beginTime:"",
 					endTime:"",
 					loadedPercent:"",
+					rotatedeg:"",
 					isPaused:false
 				},
 				dataModel:window.dataModel,
-				isShow:false
+				isShow:false,
+				timer:""
 			}
 		},
 		mounted(){
 			this.getSongData();
 		},
 		methods:{
-			getAudio:function(){
-				var song_url = "http://ws.stream.qqmusic.qq.com/" + this.$route.params.songid + ".m4a?fromtag=46";
+			getAudio:function(songid){
+				var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
 				return song_url;
 			},
 			getSongData:function(){
@@ -57,13 +60,15 @@
 					audio.play();
 
 					//加载条的变化
-					var timer = setInterval(function(){
+					_that.timer = setInterval(function(){
 						var loaded_time = audio.currentTime;
 						var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
+						var loaded_deg = 360 * parseFloat(loaded_percent);
 
 						_that.songData.beginTime = _that.getTime(loaded_time);
 						_that.songData.loadedPercent = loaded_percent;
-						//console.log(loaded_data);
+						_that.songData.rotatedeg = loaded_deg + "deg";
+						//console.log(typeof loaded_percent);
 
 						//播放完成自动暂停
 						if(  audio.currentTime == audio.duration ){
@@ -72,16 +77,45 @@
 							audio.pause();
 
 							//清除计数器
-							clearInterval(timer);
+							clearInterval(_that.timer);
 						}
 					},500);
 
 				});
 			},
-			prevSong:function(){
+			playNextSong:function(argument){
 
-			},
-			nextSong:function(){
+				var result_index = 0;
+				var current_index = this.$route.params.songindex;
+				var songs_len = this.dataModel.songlist.length;
+			
+				if( argument == "prev" ) {
+
+				 	if( current_index > 0 ) {
+						result_index = current_index - 1;
+					}else {
+						result_index = songs_len - 1;
+					}
+
+				}else if( argument == "next" ) {
+
+					if( current_index < songs_len - 1 ) {
+						result_index = current_index + 1;
+					}else {
+						current_index = 0;
+					}
+
+				}else{}
+
+				//console.log(result_index);
+				var songid = this.dataModel.songlist[result_index].data.songid;
+
+				//重置songindex
+				this.$route.params.songindex = result_index;
+				this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
+
+				//播放
+				this.getAudio(songid);
 
 			},
 			playerPaused:function(){
@@ -104,6 +138,16 @@
 			},
 			closeSongList:function(){
 				this.isShow = false;
+			},
+			selectSong:function(index){
+
+				var songid = this.dataModel.songlist[index].data.songid;
+				this.$route.params.songid = songid;
+
+				console.log(songid);
+
+				this.getAudio(songid);
+				this.closeSongList();
 			},
 			getTime:function(time){
 
@@ -128,6 +172,21 @@
 		width:100%;
 		height: 100%;
 		background-size:cover;
+		background-position: center center;
+		.mid_circle {
+			width: 7rem;
+		    height: 7rem;
+		    background-size: cover;
+		    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    z-index: 3;
+		    border-radius: 50%;
+		    margin-top: -3rem;
+		    margin-left: -3rem;
+		    border: 1rem solid #000;
+		    transition: all 3s linear;
+		}
 		.mask_bg {
 			position: absolute;
 			left:0;
@@ -135,7 +194,7 @@
 			z-index:1;
 			width:100%;
 			height:100%;
-			background:rgba(0,0,0,.9);
+			background:rgba(0,0,0,.7);
 		}
 		.music_controls {
 			position: absolute;
@@ -165,7 +224,7 @@
 						left: 0;
 						top: 0;
 						height: 100%;
-						background: blue;
+						background: #31c27c;
 					}	
 				}
 			}

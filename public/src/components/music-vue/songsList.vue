@@ -10,7 +10,7 @@
 				.broad_cast
 		.songs_list
 			ul
-				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:{songid:item.data.songid}}",class="item_box")
+				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:{songid:item.data.songid,songindex:i}}",class="item_box")
 					span.num_cont {{i+1}}
 					div.song_cont
 						p.song_name {{item.data.songname}}
