@@ -12,7 +12,7 @@
 				a(href="javascript:;",class="broadCast_btn",:class="{paused:songData.isPaused}",v-on:click="playerPaused()")
 				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
-		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')',transform:'rotate('+songData.rotatedeg+')'}")
+		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')',transform:'rotate('+songData.rotatedeg+')'}",:class="{transition:isAdd}")
 		.song_list(:class="{show:isShow}")
 			ul
 				li(v-for="(item,i) in dataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
@@ -34,6 +34,7 @@
 				},
 				dataModel:window.dataModel,
 				isShow:false,
+				isAdd:true,
 				timer:""
 			}
 		},
@@ -63,7 +64,7 @@
 					_that.timer = setInterval(function(){
 						var loaded_time = audio.currentTime;
 						var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
-						var loaded_deg = 360 * parseFloat(loaded_percent);
+						var loaded_deg = 360 * parseFloat(audio.currentTime / audio.duration)*20;
 
 						_that.songData.beginTime = _that.getTime(loaded_time);
 						_that.songData.loadedPercent = loaded_percent;
@@ -79,7 +80,7 @@
 							//清除计数器
 							clearInterval(_that.timer);
 						}
-					},500);
+					},200);
 
 				});
 			},
@@ -88,7 +89,8 @@
 				var result_index = 0;
 				var current_index = this.$route.params.songindex;
 				var songs_len = this.dataModel.songlist.length;
-			
+
+				//判断前进后退
 				if( argument == "prev" ) {
 
 				 	if( current_index > 0 ) {
@@ -107,7 +109,6 @@
 
 				}else{}
 
-				//console.log(result_index);
 				var songid = this.dataModel.songlist[result_index].data.songid;
 
 				//重置songindex
@@ -116,6 +117,10 @@
 
 				//播放
 				this.getAudio(songid);
+				this.songData.isPaused = false;
+				
+				//圆盘控制
+				this.circleControl();
 
 			},
 			playerPaused:function(){
@@ -131,7 +136,15 @@
 					this.$refs.audio.play();
 
 				}
+			},
+			circleControl:function(){
+				var _that = this;
 
+				_that.isAdd = false;
+				_that.songData.rotatedeg = 0;
+				setTimeout(function(){
+					_that.isAdd = true;
+				},300);
 			},
 			showSongList:function(){
 				this.isShow = true;
@@ -144,10 +157,13 @@
 				var songid = this.dataModel.songlist[index].data.songid;
 				this.$route.params.songid = songid;
 
-				console.log(songid);
-
 				this.getAudio(songid);
+
+				//关闭列表
 				this.closeSongList();
+
+				//控制圆盘操作
+				this.circleControl();
 			},
 			getTime:function(time){
 
@@ -174,18 +190,21 @@
 		background-size:cover;
 		background-position: center center;
 		.mid_circle {
-			width: 7rem;
-		    height: 7rem;
+			width: 8.6rem;
+		    height: 8.6rem;
 		    background-size: cover;
 		    position: absolute;
 		    left: 50%;
 		    top: 50%;
 		    z-index: 3;
 		    border-radius: 50%;
-		    margin-top: -3rem;
-		    margin-left: -3rem;
+		    margin-top: -4.3rem;
+		    margin-left: -4.3rem;
 		    border: 1rem solid #000;
-		    transition: all 3s linear;
+		    &.transition {
+		    	transition: all 3s linear;
+				-webkit-transition: all 3s linear;
+		    }
 		}
 		.mask_bg {
 			position: absolute;

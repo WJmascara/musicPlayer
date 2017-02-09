@@ -1,31 +1,31 @@
 <template lang="pug">
-	.songList_module
-		router-link(:to="{name:'song',params:{songid:'200576210',songindex:0}}",class="img_box")
-			img(:src="dataModel.topinfo.pic_album")
+	.songListRecom_module
+		.img_box
+			img(:src="logoPic")
 			.gradient_bg
 			.info_box
 				.txt_cont
-					p {{dataModel.topinfo.ListName}}
-					p {{dataModel.update_time}}更新
+					p {{dissname}}
+					p {{desc}}
 				.broad_cast
 		.songs_list
 			ul
-				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:{songid:item.data.songid,songindex:i}}",class="item_box")
+				li(v-for="(item,i) in songlist",class="item_box")
 					span.num_cont {{i+1}}
 					div.song_cont
-						p.song_name {{item.data.songname}}
-						p.singer_name {{item.data.singer[0].name}}{{item.data.albumname?" · "+item.data.albumname:""}} {{item.data.albumdesc?" · "+item.data.albumdesc:""}}
+						p.song_name {{item.title}}
+						p.singer_name {{item.singer[0].name}}
 </template>
 <script>
 
 	export default {
-		name:"songList_module",
+		name:"songListRecom_module",
 		data(){
 			return {
-				dataModel:{
-					topinfo:"",
-					songlist:[]
-				}
+				songlist:[],
+				logoPic:"",
+				dissname:"",
+				desc:""
 			}	
 		},
 		created(){
@@ -33,13 +33,17 @@
 		},
 		methods:{
 			getSuccessList:function(data){
-				this.dataModel = window.dataModel = data;
+				this.songlist = data.cdlist[0].songlist;
+				this.logoPic = data.cdlist[0].logo;
+				this.dissname = data.cdlist[0].dissname;
+				this.desc = data.cdlist[0].desc;
+				//console.log(this.songlist);
 			},
 			getList:function(){
 
 				var that = this;
 				$.ajax({
-					url:"https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&"+"topid="+that.$route.params.id+"&jsonpCallback=?",
+					url:"https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&new_format=1&pic=500&disstid="+that.$route.params.disstid+"&type=1&json=1&utf8=1&onlysong=0&nosign=1&_=1486633911911&jsonpCallback=?",
 					type:"get",
 					dataType:"jsonp",
 					jsonp:"callback"
@@ -55,7 +59,7 @@
 	}
 </script>
 <style lang="scss" scoped>
-	.songList_module {
+	.songListRecom_module {
 		%base-ellipsis {
 			overflow: hidden;
 			text-overflow:ellipsis;
@@ -100,6 +104,10 @@
 					font-size: .6rem;
 					flex:1;
 					-webkit-flex:1;
+					overflow: hidden;
+					p {
+						@extend %base-ellipsis;
+					}
 					p:last-child {
 						font-size: .4rem;
 					}

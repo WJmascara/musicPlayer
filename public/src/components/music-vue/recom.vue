@@ -1,16 +1,15 @@
 <template lang="pug">
 	.recommend_module
 		.banner_list
-			ul(:style="{width:'500%'}")
-				li(v-for="(item,i) in recomData.data.slider",:style="{width:'20%'}")
-					img(:src="item.picUrl")
+			ul(:style="{width:'600%'}")
+				li(v-for="(item,i) in recomData.data.focus",:style="{width:'16%'}")
+					img(:src="item.pic")
 		.radio_list
 			h2 电台
 			ul
-				li(v-for="(item,i) in recomData.data.radioList")
-					.radio_item
-						img(:src="item.picUrl")
-						span.icon_play
+				router-link(:to="{name:'songListRecom',params:{disstid:item.dissid}}",v-for="(item,i) in recomData.data.hotdiss.list",:style="{backgroundImage:'url('+item.imgurl+')'}")
+					span.icon_play
+					p.tit_box {{item.Ftitle}}
 
 </template>
 <script>
@@ -19,7 +18,10 @@
 		data(){
 			return {
 				recomData:{
-					data:""
+					data:{
+						focus:[],
+						hotdiss:""
+					}
 				}
 			}
 		},
@@ -35,7 +37,7 @@
 			getList:function(){
 
 				$.ajax({
-					url:"https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&_=1486545054837&jsonpCallback=?",
+					url:"https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg?format=jsonp&tpl=v12&page=other&rnd=0&g_tk=1486632476661&loginUin=0&hostUin=0&inCharset=utf8&outCharset=GB2312&notice=0&platform=yqq&needNewCode=0&jsonpCallback=?",
 					dataType:"jsonp",
 					type:"get",
 					jsonp:"callback"
@@ -73,8 +75,49 @@
 				flex-wrap:wrap;
 				-webkit-flex-wrap:wrap;
 				align-items:center;
-				li {
-					width: 50%;
+				-webkit-box-pack: justify;
+			    -webkit-justify-content: space-between;
+			    justify-content: space-between;
+				a {
+					display: block;
+					position: relative;
+					width: 7rem;
+				    height: 7rem;
+				    background-size: cover;
+				    background-repeat: no-repeat;
+				    margin-bottom: .3rem;
+				    .icon_play{
+						position: absolute;
+						right: .3rem;
+						bottom: .3rem;
+						width: 1.2rem;
+						height: 1.2rem;
+						background: rgba(0,0,0,.5);
+						border:2px solid #fff;
+						border-radius: 50%;
+						&:after {
+							content: "";
+							position: absolute;
+							left: 50%;
+							top: 50%;
+							transform:translate(-50%,-50%);
+							-webkit-transform:translate(-50%,-50%);
+							margin-left: .05rem;
+							border-style:dashed dashed dashed solid; 
+							border-width: .3rem 0 .3rem .5rem;
+							border-color: transparent transparent transparent #fff; 
+						}
+				    }
+				    .tit_box {
+				    	margin-top: 7rem;
+					    font-size: .5rem;
+					    padding: .3rem .3rem;
+					    background: #fff;
+					    border: 1px solid #eee;
+					    overflow: hidden;
+					    text-overflow:ellipsis;
+					    white-space: nowrap;
+				    }
 				}
 			}
 		}

@@ -534,6 +534,7 @@ body {
   white-space: nowrap;
 }
 .songList_module .img_box[data-v-fb7ab7b6] {
+  display: block;
   position: relative;
   width: 100%;
   height: 192px;
@@ -669,24 +670,26 @@ body {
   background-position: center center;
 }
 .song_module .mid_circle {
-    width: 112px;
-    width: 7rem;
-    height: 112px;
-    height: 7rem;
+    width: 137.6px;
+    width: 8.6rem;
+    height: 137.6px;
+    height: 8.6rem;
     background-size: cover;
     position: absolute;
     left: 50%;
     top: 50%;
     z-index: 3;
     border-radius: 50%;
-    margin-top: -48px;
-    margin-top: -3rem;
-    margin-left: -48px;
-    margin-left: -3rem;
+    margin-top: -68.8px;
+    margin-top: -4.3rem;
+    margin-left: -68.8px;
+    margin-left: -4.3rem;
     border: 16px solid #000;
     border: 1rem solid #000;
-    -webkit-transition: all 3s linear;
-    transition: all 3s linear;
+}
+.song_module .mid_circle.transition {
+      transition: all 3s linear;
+      -webkit-transition: all 3s linear;
 }
 .song_module .mask_bg {
     position: absolute;
@@ -912,9 +915,265 @@ body {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
 }
-.recommend_module .radio_list ul li {
-      width: 50%;
+.recommend_module .radio_list ul a {
+      display: block;
+      position: relative;
+      width: 112px;
+      width: 7rem;
+      height: 112px;
+      height: 7rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin-bottom: 4.8px;
+      margin-bottom: .3rem;
+}
+.recommend_module .radio_list ul a .icon_play {
+        position: absolute;
+        right: 4.8px;
+        right: .3rem;
+        bottom: 4.8px;
+        bottom: .3rem;
+        width: 19.2px;
+        width: 1.2rem;
+        height: 19.2px;
+        height: 1.2rem;
+        background: rgba(0, 0, 0, .5);
+        border: 2px solid #fff;
+        border-radius: 50%;
+}
+.recommend_module .radio_list ul a .icon_play:after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          -webkit-transform: translate(-50%, -50%);
+          margin-left: 0.8px;
+          margin-left: .05rem;
+          border-style: dashed dashed dashed solid;
+          border-width: 4.8px 0 4.8px 8px;
+          border-width: .3rem 0 .3rem .5rem;
+          border-color: transparent transparent transparent #fff;
+}
+.recommend_module .radio_list ul a .tit_box {
+        margin-top: 112px;
+        margin-top: 7rem;
+        font-size: 8px;
+        font-size: .5rem;
+        padding: 4.8px 4.8px;
+        padding: .3rem .3rem;
+        background: #fff;
+        border: 1px solid #eee;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+}
+
+.search_module .search_box {
+  position: relative;
+  padding: 0 4.8px;
+  padding: 0 .3rem;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+  display: -webkit-box;
+  width: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.search_module .input_box {
+  position: relative;
+  display: block;
+  padding: 4.8px 4.8px 4.8px 24px;
+  padding: .3rem .3rem .3rem 1.5rem;
+  background: #fff;
+  color: #333;
+  line-height: 16px;
+  line-height: 1rem;
+  border: none;
+  font-size: 8px;
+  font-size: .5rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-flex: 1;
+  border: 1px solid #eee;
+}
+.search_module .search_btn {
+  position: absolute;
+  left: 9.6px;
+  left: .6rem;
+  top: 6.4px;
+  top: .4rem;
+  width: 9.6px;
+  width: .6rem;
+  height: 9.6px;
+  height: .6rem;
+  border: 2px solid #999;
+  background: transparent;
+  border-radius: 50%;
+}
+.search_module .search_btn:after {
+    content: "";
+    position: absolute;
+    bottom: -4.8px;
+    bottom: -.3rem;
+    left: 50%;
+    margin-left: 4.8px;
+    margin-left: 0.3rem;
+    width: 2px;
+    height: 8px;
+    height: 6.4px;
+    height: .4rem;
+    background: #999;
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+}
+.search_module .cancle_box {
+  font-size: 8px;
+  font-size: .5rem;
+  color: #666;
+  margin-left: 4.8px;
+  margin-left: .3rem;
+  width: 0%;
+}
+
+.songListRecom_module .img_box .info_box .txt_cont p[data-v-db8be178], .songListRecom_module .songs_list .item_box .song_cont .song_name[data-v-db8be178], .songListRecom_module .songs_list .item_box .song_cont .singer_name[data-v-db8be178] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.songListRecom_module .img_box[data-v-db8be178] {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 192px;
+  height: 12rem;
+}
+.songListRecom_module .img_box img[data-v-db8be178] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+.songListRecom_module .img_box .gradient_bg[data-v-db8be178] {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    height: 4rem;
+    background: -webkit-linear-gradient(to bottom, transparent, rgba(0, 0, 0, .4));
+    background: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, .4));
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, .4));
+    z-index: 1;
+}
+.songListRecom_module .img_box .info_box[data-v-db8be178] {
+    position: absolute;
+    left: 0;
+    bottom: 2.4px;
+    bottom: .15rem;
+    width: 100%;
+    padding: 0 4.8px;
+    padding: 0 .3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    z-index: 2;
+}
+.songListRecom_module .img_box .info_box .txt_cont[data-v-db8be178] {
+      color: #fff;
+      font-size: 9.6px;
+      font-size: .6rem;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      -webkit-flex: 1;
+      overflow: hidden;
+}
+.songListRecom_module .img_box .info_box .txt_cont p[data-v-db8be178]:last-child {
+        font-size: 6.4px;
+        font-size: .4rem;
+}
+.songListRecom_module .img_box .info_box .broad_cast[data-v-db8be178] {
+      position: relative;
+      width: 32px;
+      width: 2rem;
+      height: 32px;
+      height: 2rem;
+      border-radius: 50%;
+      border: 3px solid #fff;
+}
+.songListRecom_module .img_box .info_box .broad_cast[data-v-db8be178]:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        border-color: transparent transparent transparent #fff;
+        border-width: 8px 0 8px 9.6px;
+        border-width: .5rem 0 .5rem .6rem;
+        border-style: solid;
+}
+.songListRecom_module .songs_list[data-v-db8be178] {
+  background: #000;
+}
+.songListRecom_module .songs_list .item_box[data-v-db8be178] {
+    display: block;
+    padding-top: 4.8px;
+    padding-top: .3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    color: #fff;
+    line-height: 1.6;
+}
+.songListRecom_module .songs_list .item_box .num_cont[data-v-db8be178] {
+      width: 24px;
+      width: 1.5rem;
+      text-align: center;
+      font-size: 9.6px;
+      font-size: .6rem;
+}
+.songListRecom_module .songs_list .item_box .song_cont[data-v-db8be178] {
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      width: 0%;
+      padding: 0 4.8px 4.8px 0;
+      padding: 0 .3rem .3rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .35);
+}
+.songListRecom_module .songs_list .item_box .song_cont .song_name[data-v-db8be178] {
+        font-size: 8.8px;
+        font-size: .55rem;
+}
+.songListRecom_module .songs_list .item_box .song_cont .singer_name[data-v-db8be178] {
+        font-size: 7.2px;
+        font-size: .45rem;
+        color: rgba(255, 255, 255, .6);
+}
+.songListRecom_module .songs_list .item_box:last-child .song-cont[data-v-db8be178] {
+      border-bottom: none;
 }
 
 /*# sourceMappingURL=../sourceMap/css/musicIndex.css.map*/

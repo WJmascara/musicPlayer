@@ -6,6 +6,8 @@ import topList from "../components/music-vue/topList.vue"
 import songsList from "../components/music-vue/songsList.vue"
 import song from "../components/music-vue/song.vue"
 import recom from "../components/music-vue/recom.vue"
+import search from "../components/music-vue/search.vue"
+import songListRecom from "../components/music-vue/songListRecom.vue"
 
 var router = new VueRouter({
 	routes:[
@@ -20,6 +22,12 @@ var router = new VueRouter({
 		},
 		{
 			name:"recom",path:"/recom",component:recom
+		},
+		{
+			name:"search",path:"/search",component:search
+		},
+		{
+			name:"songListRecom",path:"/recom/songListRecom/:disstid",component:songListRecom
 		}
 	]
 });
