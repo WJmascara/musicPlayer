@@ -163,7 +163,7 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(16)
+__webpack_require__(24)
 
 var Component = __webpack_require__(0)(
   /* script */
@@ -171,7 +171,7 @@ var Component = __webpack_require__(0)(
   /* template */
   __webpack_require__(11),
   /* scopeId */
-  null,
+  "data-v-7b40db7e",
   /* cssModules */
   null
 )
@@ -10048,7 +10048,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.moreNews()
       }
     }
-  }, [_vm._v("更多")])], 2)
+  }, [_vm._v(_vm._s(_vm.text))])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -10153,12 +10153,7 @@ if (false) {
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 16 */,
 /* 17 */
 /***/ (function(module, exports) {
 
@@ -10190,7 +10185,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: "news_list_module",
     data() {
         return {
-            lists: []
+            lists: [],
+            text: '更多'
         };
     },
     created() {
@@ -10231,7 +10227,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return current_date2;
         },
         getSuccessList: function (data) {
-
+            this.text = '更多';
             data.date = this.getOutPutDate(data.date);
             this.lists.push(data);
         },
@@ -10245,11 +10241,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 dataType: "json"
             }).done(this.getSuccessList).fail(function () {
                 return false;
-            }).always(function () {
+            }).always(() => {
+
                 return;
             });
         },
         moreNews: function () {
+            this.text = '加载中...';
             this.getNewsList();
         }
     }
@@ -10486,12 +10484,18 @@ __webpack_require__(6);
 window.$ = window.jQuery = __webpack_require__(7);
 
 var router = new VueRouter({
-    routes: [{ name: 'dayNews', path: '/', component: __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue___default.a }, { name: 'newsDetail', path: '/name/:id', component: __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue___default.a }, { name: 'themeNews', path: '/components/:name', component: __WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue___default.a }, { name: 'themeNewsList', path: '/themeNewsList/:id', component: __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue___default.a }, { name: 'themeNewsDetail', path: '/themeNewsDetail/:id', component: __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue___default.a }]
+    routes: [{ name: 'dayNews', path: '/dayNews', component: __WEBPACK_IMPORTED_MODULE_0__components_zhihu_dayNews_vue___default.a }, { name: 'newsDetail', path: '/name/:id', component: __WEBPACK_IMPORTED_MODULE_1__components_zhihu_newsDetail_vue___default.a }, { name: 'themeNews', path: '/components/themeNews', component: __WEBPACK_IMPORTED_MODULE_2__components_zhihu_themeNews_vue___default.a }, { name: 'themeNewsList', path: '/themeNewsList/:id', component: __WEBPACK_IMPORTED_MODULE_3__components_zhihu_themeNewsList_vue___default.a }, { name: 'themeNewsDetail', path: '/themeNewsDetail/:id', component: __WEBPACK_IMPORTED_MODULE_4__components_zhihu_themeNewsDetail_vue___default.a }]
 });
 
 new Vue({
     router
 }).$mount("#app");
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

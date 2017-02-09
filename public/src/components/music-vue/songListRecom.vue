@@ -1,16 +1,16 @@
 <template lang="pug">
-	.songListRecom_module
+	.songListRecom_module(v-if="dataModel.cdlist")
 		.img_box
-			img(:src="logoPic")
+			img(:src="dataModel.cdlist[0].logo")
 			.gradient_bg
 			.info_box
 				.txt_cont
-					p {{dissname}}
-					p {{desc}}
+					p {{dataModel.cdlist[0].dissname}}
+					p {{dataModel.cdlist[0].desc}}
 				.broad_cast
 		.songs_list
 			ul
-				li(v-for="(item,i) in songlist",class="item_box")
+				li(v-for="(item,i) in dataModel.cdlist[0].songlist",class="item_box")
 					span.num_cont {{i+1}}
 					div.song_cont
 						p.song_name {{item.title}}
@@ -22,10 +22,7 @@
 		name:"songListRecom_module",
 		data(){
 			return {
-				songlist:[],
-				logoPic:"",
-				dissname:"",
-				desc:""
+				dataModel:"",
 			}	
 		},
 		created(){
@@ -33,11 +30,9 @@
 		},
 		methods:{
 			getSuccessList:function(data){
-				this.songlist = data.cdlist[0].songlist;
-				this.logoPic = data.cdlist[0].logo;
-				this.dissname = data.cdlist[0].dissname;
-				this.desc = data.cdlist[0].desc;
-				//console.log(this.songlist);
+				
+				this.dataModel = data;
+
 			},
 			getList:function(){
 
@@ -77,6 +72,7 @@
 				left: 0;
 				top: 0;
 				z-index: 0;
+				object-fit:cover;
 			}
 			.gradient_bg {
 				position: absolute;

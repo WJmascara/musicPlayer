@@ -687,9 +687,33 @@ body {
     border: 16px solid #000;
     border: 1rem solid #000;
 }
-.song_module .mid_circle.transition {
-      transition: all 3s linear;
-      -webkit-transition: all 3s linear;
+.song_module .mid_circle.rotate {
+      animation: rotateSlide 5s linear both infinite;
+      -webkit-animation: rotateSlide 5s linear both infinite;
+}
+@-webkit-keyframes rotateSlide {
+0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+}
+100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+}
+@keyframes rotateSlide {
+0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+}
+100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+}
+}
+.song_module .mid_circle.pause {
+      animation-play-state: paused;
+      -webkit-animation-play-state: paused;
 }
 .song_module .mask_bg {
     position: absolute;
@@ -1062,6 +1086,8 @@ body {
     left: 0;
     top: 0;
     z-index: 0;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 .songListRecom_module .img_box .gradient_bg[data-v-db8be178] {
     position: absolute;

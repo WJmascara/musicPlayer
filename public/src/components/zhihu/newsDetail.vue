@@ -46,37 +46,40 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+    
     .details_module{
+        a{
+            position: absolute;
+            right:0;
+            font-size: 12px;
+            color: #fff
+        }
         .head_img {
             position: relative;
             img {
                 width:100%;
+                height: 400px;
+                object-fit: cover;
                 vertical-align:top;
             }
             .tit {
-                font-size: 4em;
-                color: #fff;
-                position: absolute;
-                transform:translate(-50%,-50%);
-                -webkit-transform:translate(-50%,-50%);
-                top:50%;
-                left:50%;
+                font-size: 36px;
+                margin: 30px;
+
+                color: #333;
                 width:90%;
-                text-align:center;
+                text-align: center;
             }
             .source {
-                color: #e2e2e2;
-                bottom: 15px;
-                right: 15px;
-                position: absolute;
-                font-size: 2em;
+                text-align: center;
+                font-style: italic;
+                color: #666;
+               
+                font-size: 16px;
             }
         }
-        a {
-            font-size:2em;
-            color:#333;
-            text-decoration:underline;
-        }
+        
+        
     }
 </style>

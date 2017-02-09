@@ -52,12 +52,13 @@
         filters:{
             cutNum: function(value) {
 
-                var str = String(value);
-                var str_a = str.substr(0,str.length-3);
-                var str_b = str_a.substr(0,str_a.length-1);
-                var str_c = Math.round(parseInt(str_a.charAt(str_a.length-1)));
+                // var str = String(value);
+                // var str_a = str.substr(0,str.length-3);
+                // var str_b = str_a.substr(0,str_a.length-1);
+                // var str_c = Math.round(parseInt(str_a.charAt(str_a.length-1)));
 
-                var result = str_b +　"," + str_c;
+                // var result = str_b +　"," + str_c;
+                var result = (value/10000).toFixed(1);
 
                 return result;
             }

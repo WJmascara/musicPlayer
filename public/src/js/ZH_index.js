@@ -11,9 +11,9 @@ window.$ = window.jQuery = require("../assets/js/jquery.js");
 
 var router = new VueRouter({
     routes:[
-        { name: 'dayNews', path:'/', component: dayNews},
+        { name: 'dayNews', path:'/dayNews', component: dayNews},
         { name: 'newsDetail', path:'/name/:id', component: newsDetail},
-        { name:'themeNews', path:'/components/:name', component: themeNews},
+        { name:'themeNews', path:'/components/themeNews', component: themeNews},
         { name: 'themeNewsList', path:'/themeNewsList/:id', component: themeNewsList},
         { name: 'themeNewsDetail', path:'/themeNewsDetail/:id', component:themeNewsDetail }
     ]

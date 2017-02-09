@@ -12,7 +12,7 @@
 				a(href="javascript:;",class="broadCast_btn",:class="{paused:songData.isPaused}",v-on:click="playerPaused()")
 				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
-		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')',transform:'rotate('+songData.rotatedeg+')'}",:class="{transition:isAdd}")
+		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:isRotatePause}")
 		.song_list(:class="{show:isShow}")
 			ul
 				li(v-for="(item,i) in dataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
@@ -20,6 +20,7 @@
 		audio(:src="getAudio(this.$route.params.songid)",ref="audio")
 </template>
 <script>
+
 	export default {
 		name:"song_module",
 		data(){
@@ -34,7 +35,7 @@
 				},
 				dataModel:window.dataModel,
 				isShow:false,
-				isAdd:true,
+				isRotatePause:false,
 				timer:""
 			}
 		},
@@ -64,18 +65,16 @@
 					_that.timer = setInterval(function(){
 						var loaded_time = audio.currentTime;
 						var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
-						var loaded_deg = 360 * parseFloat(audio.currentTime / audio.duration)*20;
 
 						_that.songData.beginTime = _that.getTime(loaded_time);
 						_that.songData.loadedPercent = loaded_percent;
-						_that.songData.rotatedeg = loaded_deg + "deg";
-						//console.log(typeof loaded_percent);
 
 						//播放完成自动暂停
 						if(  audio.currentTime == audio.duration ){
 
 							_that.songData.isPaused = true;
 							audio.pause();
+							_that.isRotatePause = true;
 
 							//清除计数器
 							clearInterval(_that.timer);
@@ -118,9 +117,8 @@
 				//播放
 				this.getAudio(songid);
 				this.songData.isPaused = false;
-				
-				//圆盘控制
-				this.circleControl();
+
+				this.isRotatePause = false;
 
 			},
 			playerPaused:function(){
@@ -129,22 +127,15 @@
 
 					this.songData.isPaused = true;
 					this.$refs.audio.pause();
+					this.isRotatePause = true;
 
 				}else {
 
 					this.songData.isPaused = false;
 					this.$refs.audio.play();
+					this.isRotatePause = false;
 
 				}
-			},
-			circleControl:function(){
-				var _that = this;
-
-				_that.isAdd = false;
-				_that.songData.rotatedeg = 0;
-				setTimeout(function(){
-					_that.isAdd = true;
-				},300);
 			},
 			showSongList:function(){
 				this.isShow = true;
@@ -161,9 +152,7 @@
 
 				//关闭列表
 				this.closeSongList();
-
-				//控制圆盘操作
-				this.circleControl();
+				
 			},
 			getTime:function(time){
 
@@ -201,10 +190,33 @@
 		    margin-top: -4.3rem;
 		    margin-left: -4.3rem;
 		    border: 1rem solid #000;
-		    &.transition {
-		    	transition: all 3s linear;
-				-webkit-transition: all 3s linear;
+		    &.rotate {
+		    	animation: rotateSlide 5s linear both infinite;
+		    	-webkit-animation: rotateSlide 5s linear both infinite;
+		    	
+		    	@-webkit-keyframes rotateSlide {
+		    		0% {
+		    			transform:rotate(0);
+		    			-webkit-transform:rotate(0);
+		    		}100% {
+						transform:rotate(360deg);
+		    			-webkit-transform:rotate(360deg);
+		    		}
+		    	}
+		    	@keyframes rotateSlide {
+		    		0% {
+		    			transform:rotate(0);
+		    			-webkit-transform:rotate(0);
+		    		}100% {
+						transform:rotate(360deg);
+		    			-webkit-transform:rotate(360deg);
+		    		}
+		    	}
 		    }
+		    &.pause{
+	    		animation-play-state:paused;
+	    		-webkit-animation-play-state:paused;
+	    	}
 		}
 		.mask_bg {
 			position: absolute;

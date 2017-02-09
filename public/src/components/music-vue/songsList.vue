@@ -44,11 +44,7 @@
 					dataType:"jsonp",
 					jsonp:"callback"
 					
-				}).done(this.getSuccessList).fail(function(){
-
-				}).always(function(){
-
-				})
+				}).done(this.getSuccessList);
 			}
 			
 		}

@@ -44,19 +44,31 @@
 <style lang="scss" scoped>
     .theme_news_module{
         .card_item {
+            margin: 15px;
             display:block;
             margin-bottom:30px;
+            border-radius: 4px;
+            overflow: hidden;
+            background:#fff;
+            border-bottom: 1px solid #fff;
+            &:hover{
+                border-bottom: 1px solid #ddd;
+                // background-color: #eee;
+            }
             .card_img {
-                height:400px;
-                background-size:cover;
+                height: 200px;
+                float: right;
+                width: 200px;
+                background-size:contain;
             }
             .card_info {
-                padding:10px;
-                background:#fff;
+                padding:30px;
+                float: left;
                 color:#333;
                 .card_tit {
                     font-size:1.5em;
                     line-height:1.6;
+                    margin-bottom: 10px;
                 }
                 .card_description {
                     font-size:1em;

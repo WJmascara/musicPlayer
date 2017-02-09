@@ -9,7 +9,7 @@
                             span.new_tit  {{item.title}}
                             span.new_pic
                                 img(v-bind:src="item.images[0]")
-        a(href="javascript:;",class="more_btn",v-on:click="moreNews()") 更多
+        a(href="javascript:;",class="more_btn",v-on:click="moreNews()") {{text}}
 </template>
 
 <script>
@@ -18,7 +18,8 @@
         name:"news_list_module",
         data(){
             return{
-                lists:[]
+                lists:[],
+                text: '更多'
             }
         },
         created(){
@@ -59,7 +60,7 @@
                 return current_date2;
             },
             getSuccessList:function(data) {
-
+                this.text = '更多'
                 data.date = this.getOutPutDate(data.date);
                 this.lists.push(data);
             },
@@ -67,17 +68,21 @@
 
                 var _that = this;
 
+                
+
                 $.ajax({
                     url:"http://news.at.zhihu.com/api/4/news/before/"+this.getDate(),
                     type:"get",
                     dataType:"json"
                 }).done(this.getSuccessList).fail(function(){
                     return false
-                }).always(function(){
+                }).always(()=>{
+                    
                     return;
                 });
             },
             moreNews:function(){
+                this.text = '加载中...'
                 this.getNewsList();
             }
         }
@@ -90,20 +95,27 @@
     }
     .news_list_module {
         .date_tit {
-            padding-left:15px;
-            font-size: 3em;
+            padding-left:30px;
+            font-size: 1em;
             color: #b2bac2;
             font-weight: 500;
             line-height:2;
+            margin: 15px 0 5px;
         }
         .news_list {
+            margin: 0 15px 30px;
+
             li a {
+                border-radius: 4px;
                 display: flex;
                 display:-webkit-flex;
                 display:-moz-flex;
                 margin-bottom:15px;
-                padding:10px;
+                border-bottom: 1px solid #fff;
                 background:#fff;
+                &:hover{
+                    border-color: #ccc;
+                }
                 .new_pic {
                     display: block;
                     margin-left:10px;
@@ -111,28 +123,30 @@
                     height:6em;
                 }
                 .new_tit {
+                    padding: 20px;
                     -webkit-flex:1;
                     -moz-flex:1;
                     flex:1;
-                    font-size:2em;
+                    font-size:20px;
                     color:#333;
                 }
             }
         }
         .more_btn {
             display: block;
-            font-size: 1.5em;
-            padding: 1em 0;
+            font-size: 14px;
+            padding: 10px 0;
             width: 100%;
             border: 0;
-            color: #fff;
-            background-color: #252e39;
+            color: #000;
+            background-color: #ddd;
             border: none;
-            margin: 10px 0;
-            border-radius: .5em;
+            margin: 30px auto 50px;
+            border-radius: 4px;
             outline: none;
             cursor: pointer;
             text-align:center;
+            width: 75%;
         }
     }
 </style>

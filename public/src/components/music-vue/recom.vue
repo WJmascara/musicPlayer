@@ -1,8 +1,8 @@
 <template lang="pug">
 	.recommend_module
 		.banner_list
-			ul(:style="{width:'600%'}")
-				li(v-for="(item,i) in recomData.data.focus",:style="{width:'16%'}")
+			ul(:style="{width:'700%'}")
+				li(v-for="(item,i) in recomData.data.focus",:style="{width:'14%'}")
 					img(:src="item.pic")
 		.radio_list
 			h2 电台
