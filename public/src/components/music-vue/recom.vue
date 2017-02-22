@@ -1,15 +1,15 @@
 <template lang="pug">
 	.recommend_module
 		.banner_list
-			ul(:style="{width:'700%'}")
-				li(v-for="(item,i) in recomData.data.focus",:style="{width:'14%'}")
+			ul(:style="{width:(recomData.data.focus.length*100+'%')}")
+				li(v-for="(item,i) in recomData.data.focus",:style="{width:(100/recomData.data.focus.length +'%')}")
 					img(:src="item.pic")
 		.radio_list
 			h2 电台
 			ul
 				router-link(:to="{name:'songListRecom',params:{disstid:item.dissid}}",v-for="(item,i) in recomData.data.hotdiss.list",:style="{backgroundImage:'url('+item.imgurl+')'}")
 					span.icon_play
-					p.tit_box {{item.Ftitle}}
+					p.tit_box {{item.title}}
 
 </template>
 <script>

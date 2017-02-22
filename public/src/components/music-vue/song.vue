@@ -12,162 +12,179 @@
 				a(href="javascript:;",class="broadCast_btn",:class="{paused:songData.isPaused}",v-on:click="playerPaused()")
 				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
-		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:isRotatePause}")
+		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:songData.isRotatePause}")
 		.song_list(:class="{show:isShow}")
 			ul
 				li(v-for="(item,i) in dataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
 			a(href="javascript:;",v-on:click="closeSongList()",class="close_btn") 关闭
-		audio(:src="getAudio(this.$route.params.songid)",ref="audio")
 </template>
 <script>
+	
+	import {CreateAudio} from "../../js/common.js"
 
 	export default {
 		name:"song_module",
 		data(){
 			return {
+				audio:CreateAudio,
 				songData:{
 					url:"",
+					songid:this.$route.params.songid,
 					beginTime:"",
 					endTime:"",
 					loadedPercent:"",
 					rotatedeg:"",
-					isPaused:false
+					isPaused:false,
+					isRotatePause:false
 				},
 				dataModel:window.dataModel,
 				isShow:false,
-				isRotatePause:false,
 				timer:""
 			}
 		},
 		mounted(){
-			this.getSongData();
+			
+			//公用
+			var Audio = new this.audio(this.songData);
+
+			//播放
+			Audio.play();
+
+			//获取数据
+			Audio.loadedmetadata();
+
+			//歌曲进度条
+			Audio.progress();
+
+
 		},
 		methods:{
-			getAudio:function(songid){
-				var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
-				return song_url;
-			},
-			getSongData:function(){
+		// 	getAudio:function(songid){
+		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
+		// 		return song_url;
+		// 	},
+		// 	getSongData:function(){
 
-				var _that = this;
+		// 		var _that = this;
 
-				//获取audio元素
-				var audio = _that.$refs.audio;
-				audio.addEventListener("loadedmetadata",function(){
+		// 		//获取audio元素
+		// 		var audio = _that.$refs.audio;
+		// 		audio.addEventListener("loadedmetadata",function(){
 
-					_that.songData.beginTime = _that.getTime(0);
-					_that.songData.endTime = _that.getTime(audio.duration);
+		// 			_that.songData.beginTime = _that.getTime(0);
+		// 			_that.songData.endTime = _that.getTime(audio.duration);
 
-					//播放音乐
-					audio.play();
+		// 			//播放音乐
+		// 			audio.play();
 
-					//加载条的变化
-					_that.timer = setInterval(function(){
-						var loaded_time = audio.currentTime;
-						var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
+		// 			//加载条的变化
+		// 			_that.timer = setInterval(function(){
+		// 				var loaded_time = audio.currentTime;
+		// 				var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
 
-						_that.songData.beginTime = _that.getTime(loaded_time);
-						_that.songData.loadedPercent = loaded_percent;
+		// 				_that.songData.beginTime = _that.getTime(loaded_time);
+		// 				_that.songData.loadedPercent = loaded_percent;
 
-						//播放完成自动暂停
-						if(  audio.currentTime == audio.duration ){
+		// 				//播放完成自动暂停
+		// 				if(  audio.currentTime == audio.duration ){
 
-							_that.songData.isPaused = true;
-							audio.pause();
-							_that.isRotatePause = true;
+		// 					_that.songData.isPaused = true;
+		// 					audio.pause();
+		// 					_that.isRotatePause = true;
 
-							//清除计数器
-							clearInterval(_that.timer);
-						}
-					},200);
+		// 					//清除计数器
+		// 					clearInterval(_that.timer);
+		// 				}
+		// 			},200);
 
-				});
-			},
-			playNextSong:function(argument){
+		// 		});
+		// 	},
+		// 	playNextSong:function(argument){
 
-				var result_index = 0;
-				var current_index = this.$route.params.songindex;
-				var songs_len = this.dataModel.songlist.length;
+		// 		var result_index = 0;
+		// 		var current_index = this.$route.params.songindex;
+		// 		var songs_len = this.dataModel.songlist.length;
 
-				//判断前进后退
-				if( argument == "prev" ) {
+		// 		//判断前进后退
+		// 		if( argument == "prev" ) {
 
-				 	if( current_index > 0 ) {
-						result_index = current_index - 1;
-					}else {
-						result_index = songs_len - 1;
-					}
+		// 		 	if( current_index > 0 ) {
+		// 				result_index = current_index - 1;
+		// 			}else {
+		// 				result_index = songs_len - 1;
+		// 			}
 
-				}else if( argument == "next" ) {
+		// 		}else if( argument == "next" ) {
 
-					if( current_index < songs_len - 1 ) {
-						result_index = current_index + 1;
-					}else {
-						current_index = 0;
-					}
+		// 			if( current_index < songs_len - 1 ) {
+		// 				result_index = current_index + 1;
+		// 			}else {
+		// 				current_index = 0;
+		// 			}
 
-				}else{}
+		// 		}else{}
 
-				var songid = this.dataModel.songlist[result_index].data.songid;
+		// 		var songid = this.dataModel.songlist[result_index].data.songid;
 
-				//重置songindex
-				this.$route.params.songindex = result_index;
-				this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
+		// 		//重置songindex
+		// 		this.$route.params.songindex = result_index;
+		// 		this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
 
-				//播放
-				this.getAudio(songid);
-				this.songData.isPaused = false;
+		// 		//播放
+		// 		this.getAudio(songid);
+		// 		this.songData.isPaused = false;
 
-				this.isRotatePause = false;
+		// 		this.isRotatePause = false;
 
-			},
-			playerPaused:function(){
+		// 	},
+		// 	playerPaused:function(){
 
-				if( !this.songData.isPaused ) {
+		// 		if( !this.songData.isPaused ) {
 
-					this.songData.isPaused = true;
-					this.$refs.audio.pause();
-					this.isRotatePause = true;
+		// 			this.songData.isPaused = true;
+		// 			this.$refs.audio.pause();
+		// 			this.isRotatePause = true;
 
-				}else {
+		// 		}else {
 
-					this.songData.isPaused = false;
-					this.$refs.audio.play();
-					this.isRotatePause = false;
+		// 			this.songData.isPaused = false;
+		// 			this.$refs.audio.play();
+		// 			this.isRotatePause = false;
 
-				}
-			},
-			showSongList:function(){
-				this.isShow = true;
-			},
-			closeSongList:function(){
-				this.isShow = false;
-			},
-			selectSong:function(index){
+		// 		}
+		// 	},
+		// 	showSongList:function(){
+		// 		this.isShow = true;
+		// 	},
+		// 	closeSongList:function(){
+		// 		this.isShow = false;
+		// 	},
+		// 	selectSong:function(index){
 
-				var songid = this.dataModel.songlist[index].data.songid;
-				this.$route.params.songid = songid;
+		// 		var songid = this.dataModel.songlist[index].data.songid;
+		// 		this.$route.params.songid = songid;
 
-				this.getAudio(songid);
+		// 		this.getAudio(songid);
 
-				//关闭列表
-				this.closeSongList();
+		// 		//关闭列表
+		// 		this.closeSongList();
 				
-			},
-			getTime:function(time){
+		// 	},
+		// 	getTime:function(time){
 
-				var minutes = this.addZero(parseInt(time / 60));
-				var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
-				return (minutes + ":" + seconds);
-			},
-			addZero:function(num){
-				if( num > -1 && num < 10 ) {
-					num = "0" + num;
-				}
-				return num;
-			}
-		}
+		// 		var minutes = this.addZero(parseInt(time / 60));
+		// 		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
+		// 		return (minutes + ":" + seconds);
+		// 	},
+		// 	addZero:function(num){
+		// 		if( num > -1 && num < 10 ) {
+		// 			num = "0" + num;
+		// 		}
+		// 		return num;
+		// 	}
+		// }
 	}
+}
 </script>
 <style lang="scss">
 	.song_module {

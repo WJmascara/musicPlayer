@@ -1,5 +1,5 @@
 <template lang="pug">
-	.songList_module
+	.songList_module()
 		router-link(:to="{name:'song',params:{songid:'200576210',songindex:0}}",class="img_box")
 			img(:src="dataModel.topinfo.pic_album")
 			.gradient_bg

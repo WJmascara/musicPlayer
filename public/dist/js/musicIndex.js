@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -137,7 +137,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/recom.vue"
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\recom.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] recom.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -175,7 +175,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/search.vue"
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\search.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] search.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -213,7 +213,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/song.vue"
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\song.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] song.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -251,7 +251,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/songListRecom.vue"
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\songListRecom.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] songListRecom.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -289,7 +289,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/songsList.vue"
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\songsList.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] songsList.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -327,7 +327,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/topList.vue"
+Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\topList.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] topList.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -364,12 +364,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "banner_list"
   }, [_c('ul', {
     style: ({
-      width: '700%'
+      width: (_vm.recomData.data.focus.length * 100 + '%')
     })
   }, _vm._l((_vm.recomData.data.focus), function(item, i) {
     return _c('li', {
       style: ({
-        width: '14%'
+        width: (100 / _vm.recomData.data.focus.length + '%')
       })
     }, [_c('img', {
       attrs: {
@@ -395,7 +395,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "icon_play"
     }), _c('p', {
       staticClass: "tit_box"
-    }, [_vm._v(_vm._s(item.Ftitle))])])
+    }, [_vm._v(_vm._s(item.title))])])
   }))])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -570,7 +570,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })])]), _c('div', {
     staticClass: "mid_circle rotate",
     class: {
-      pause: _vm.isRotatePause
+      pause: _vm.songData.isRotatePause
     },
     style: ({
       backgroundImage: 'url(' + (_vm.dataModel.topinfo.pic ? _vm.dataModel.topinfo.pic : '') + ')'
@@ -598,12 +598,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.closeSongList()
       }
     }
-  }, [_vm._v("关闭")])]), _c('audio', {
-    ref: "audio",
-    attrs: {
-      "src": _vm.getAudio(this.$route.params.songid)
-    }
-  })])
+  }, [_vm._v("关闭")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -834,6 +829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_common_js__ = __webpack_require__(26);
 //
 //
 //
@@ -854,147 +850,169 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
 	name: "song_module",
 	data() {
 		return {
+			audio: __WEBPACK_IMPORTED_MODULE_0__js_common_js__["a" /* CreateAudio */],
 			songData: {
 				url: "",
+				songid: this.$route.params.songid,
 				beginTime: "",
 				endTime: "",
 				loadedPercent: "",
 				rotatedeg: "",
-				isPaused: false
+				isPaused: false,
+				isRotatePause: false
 			},
 			dataModel: window.dataModel,
 			isShow: false,
-			isRotatePause: false,
 			timer: ""
 		};
 	},
 	mounted() {
-		this.getSongData();
+
+		//公用
+		var Audio = new this.audio(this.songData);
+
+		//播放
+		Audio.play();
+
+		//获取数据
+		Audio.loadedmetadata();
+
+		//歌曲进度条
+		Audio.progress();
 	},
 	methods: {
-		getAudio: function (songid) {
-			var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
-			return song_url;
-		},
-		getSongData: function () {
+		// 	getAudio:function(songid){
+		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
+		// 		return song_url;
+		// 	},
+		// 	getSongData:function(){
 
-			var _that = this;
+		// 		var _that = this;
 
-			//获取audio元素
-			var audio = _that.$refs.audio;
-			audio.addEventListener("loadedmetadata", function () {
+		// 		//获取audio元素
+		// 		var audio = _that.$refs.audio;
+		// 		audio.addEventListener("loadedmetadata",function(){
 
-				_that.songData.beginTime = _that.getTime(0);
-				_that.songData.endTime = _that.getTime(audio.duration);
+		// 			_that.songData.beginTime = _that.getTime(0);
+		// 			_that.songData.endTime = _that.getTime(audio.duration);
 
-				//播放音乐
-				audio.play();
+		// 			//播放音乐
+		// 			audio.play();
 
-				//加载条的变化
-				_that.timer = setInterval(function () {
-					var loaded_time = audio.currentTime;
-					var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
+		// 			//加载条的变化
+		// 			_that.timer = setInterval(function(){
+		// 				var loaded_time = audio.currentTime;
+		// 				var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
 
-					_that.songData.beginTime = _that.getTime(loaded_time);
-					_that.songData.loadedPercent = loaded_percent;
+		// 				_that.songData.beginTime = _that.getTime(loaded_time);
+		// 				_that.songData.loadedPercent = loaded_percent;
 
-					//播放完成自动暂停
-					if (audio.currentTime == audio.duration) {
+		// 				//播放完成自动暂停
+		// 				if(  audio.currentTime == audio.duration ){
 
-						_that.songData.isPaused = true;
-						audio.pause();
-						_that.isRotatePause = true;
+		// 					_that.songData.isPaused = true;
+		// 					audio.pause();
+		// 					_that.isRotatePause = true;
 
-						//清除计数器
-						clearInterval(_that.timer);
-					}
-				}, 200);
-			});
-		},
-		playNextSong: function (argument) {
+		// 					//清除计数器
+		// 					clearInterval(_that.timer);
+		// 				}
+		// 			},200);
 
-			var result_index = 0;
-			var current_index = this.$route.params.songindex;
-			var songs_len = this.dataModel.songlist.length;
+		// 		});
+		// 	},
+		// 	playNextSong:function(argument){
 
-			//判断前进后退
-			if (argument == "prev") {
+		// 		var result_index = 0;
+		// 		var current_index = this.$route.params.songindex;
+		// 		var songs_len = this.dataModel.songlist.length;
 
-				if (current_index > 0) {
-					result_index = current_index - 1;
-				} else {
-					result_index = songs_len - 1;
-				}
-			} else if (argument == "next") {
+		// 		//判断前进后退
+		// 		if( argument == "prev" ) {
 
-				if (current_index < songs_len - 1) {
-					result_index = current_index + 1;
-				} else {
-					current_index = 0;
-				}
-			} else {}
+		// 		 	if( current_index > 0 ) {
+		// 				result_index = current_index - 1;
+		// 			}else {
+		// 				result_index = songs_len - 1;
+		// 			}
 
-			var songid = this.dataModel.songlist[result_index].data.songid;
+		// 		}else if( argument == "next" ) {
 
-			//重置songindex
-			this.$route.params.songindex = result_index;
-			this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
+		// 			if( current_index < songs_len - 1 ) {
+		// 				result_index = current_index + 1;
+		// 			}else {
+		// 				current_index = 0;
+		// 			}
 
-			//播放
-			this.getAudio(songid);
-			this.songData.isPaused = false;
+		// 		}else{}
 
-			this.isRotatePause = false;
-		},
-		playerPaused: function () {
+		// 		var songid = this.dataModel.songlist[result_index].data.songid;
 
-			if (!this.songData.isPaused) {
+		// 		//重置songindex
+		// 		this.$route.params.songindex = result_index;
+		// 		this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
 
-				this.songData.isPaused = true;
-				this.$refs.audio.pause();
-				this.isRotatePause = true;
-			} else {
+		// 		//播放
+		// 		this.getAudio(songid);
+		// 		this.songData.isPaused = false;
 
-				this.songData.isPaused = false;
-				this.$refs.audio.play();
-				this.isRotatePause = false;
-			}
-		},
-		showSongList: function () {
-			this.isShow = true;
-		},
-		closeSongList: function () {
-			this.isShow = false;
-		},
-		selectSong: function (index) {
+		// 		this.isRotatePause = false;
 
-			var songid = this.dataModel.songlist[index].data.songid;
-			this.$route.params.songid = songid;
+		// 	},
+		// 	playerPaused:function(){
 
-			this.getAudio(songid);
+		// 		if( !this.songData.isPaused ) {
 
-			//关闭列表
-			this.closeSongList();
-		},
-		getTime: function (time) {
+		// 			this.songData.isPaused = true;
+		// 			this.$refs.audio.pause();
+		// 			this.isRotatePause = true;
 
-			var minutes = this.addZero(parseInt(time / 60));
-			var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0, 2)));
-			return minutes + ":" + seconds;
-		},
-		addZero: function (num) {
-			if (num > -1 && num < 10) {
-				num = "0" + num;
-			}
-			return num;
-		}
+		// 		}else {
+
+		// 			this.songData.isPaused = false;
+		// 			this.$refs.audio.play();
+		// 			this.isRotatePause = false;
+
+		// 		}
+		// 	},
+		// 	showSongList:function(){
+		// 		this.isShow = true;
+		// 	},
+		// 	closeSongList:function(){
+		// 		this.isShow = false;
+		// 	},
+		// 	selectSong:function(index){
+
+		// 		var songid = this.dataModel.songlist[index].data.songid;
+		// 		this.$route.params.songid = songid;
+
+		// 		this.getAudio(songid);
+
+		// 		//关闭列表
+		// 		this.closeSongList();
+
+		// 	},
+		// 	getTime:function(time){
+
+		// 		var minutes = this.addZero(parseInt(time / 60));
+		// 		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
+		// 		return (minutes + ":" + seconds);
+		// 	},
+		// 	addZero:function(num){
+		// 		if( num > -1 && num < 10 ) {
+		// 			num = "0" + num;
+		// 		}
+		// 		return num;
+		// 	}
+		// }
 	}
 };
 
@@ -1149,6 +1167,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         getSuccessList: function (data) {
+            console.log(data);
             this.items = data.data.topList;
         },
         getList: function () {
@@ -1186,6 +1205,123 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateAudio; });
+
+
+function CreateAudio(songData) {
+
+	this.songData = songData;
+	songData = {
+		songid: "",
+		beginTime: "",
+		endTime: "",
+		loadedPercent: "",
+		rotatedeg: "",
+		isPaused: false,
+		isRotatePause: false
+	};
+	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songData.songid + ".m4a?fromtag=46");
+
+	this.addZero = function (num) {
+		if (num > -1 && num < 10) {
+			num = "0" + num;
+		}
+		return num;
+	};
+	this.getTime = function (time) {
+		var minutes = this.addZero(parseInt(time / 60));
+		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0, 2)));
+		return minutes + ":" + seconds;
+	};
+}
+
+//播放
+CreateAudio.prototype.play = function () {
+
+	this.audio.play();
+	this.audio.isPaused = false;
+	this.songData.isRotatePause = false;
+};
+
+CreateAudio.prototype.loadedmetadata = function () {
+
+	var _that = this;
+
+	this.audio.addEventListener("loadedmetadata", function () {
+
+		_that.songData.beginTime = _that.getTime(0);
+		_that.songData.endTime = _that.getTime(_that.audio.duration);
+
+		//播放
+		_that.play();
+	});
+};
+
+//加载进度条
+CreateAudio.prototype.progress = function () {
+
+	var _that = this;
+
+	this.audio.addEventListener("timeupdate", function () {
+		//console.log(_that.audio.currentTime);
+		_that.songData.loadedPercent = _that.audio.currentTime / _that.audio.duration * 100 + "%";
+		_that.songData.beginTime = _that.getTime(_that.audio.currentTime);
+
+		if (_that.audio.currentTime == _that.audio.duration) {
+
+			//视频播放结束
+			_that.audio.ended = true;
+		}
+	});
+};
+
+//暂停
+CreateAudio.prototype.pause = function () {
+
+	this.audio.pause();
+	this.songData.isPaused = true;
+	this.songData.isRotatePause = true;
+};
+
+//结束
+CreateAudio.prototype.ended = function () {
+
+	this.audio.ended = true;
+	this.songData.isPaused = true;
+	this.songData.isRotatePause = true;
+};
+
+//播放上一首、下一首
+CreateAudio.prototype.playNextSong = function (btnStatus, currentIndex, songsLength) {
+
+	var nextIndex = 0;
+
+	if (btnStatus == "prev") {
+
+		if (currentIndex > 0) {
+			nextIndex = currentIndex - 1;
+		} else {
+			nextIndex = songsLength - 1;
+		}
+	} else if (btnStatus == "next") {
+
+		if (currentIndex < songsLength - 1) {
+			nextIndex = currentIndex + 1;
+		} else {
+			nextIndex = 0;
+		}
+	} else {}
+
+	return nextIndex;
+};
+
+
+
+/***/ }),
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

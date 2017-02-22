@@ -29,6 +29,7 @@
         },
         methods:{
             getSuccessList:function(data){
+                console.log(data);
                 this.items = data.data.topList;
             },
             getList:function(){
