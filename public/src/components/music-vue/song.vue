@@ -13,7 +13,7 @@
 				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
 		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:songData.isRotatePause}")
-		.song_list(:class="{show:isShow}")
+		.song_list(:class="{show:songData.isSongListShow}")
 			ul
 				li(v-for="(item,i) in dataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
 			a(href="javascript:;",v-on:click="closeSongList()",class="close_btn") 关闭
@@ -28,27 +28,25 @@
 			return {
 				audio:CreateAudio,
 				songData:{
-					url:"",
 					songid:this.$route.params.songid,
 					beginTime:"",
 					endTime:"",
 					loadedPercent:"",
 					rotatedeg:"",
 					isPaused:false,
-					isRotatePause:false
+					isRotatePause:false,
+					isSongListShow:false,
 				},
-				dataModel:window.dataModel,
-				isShow:false,
-				timer:""
+				dataModel:window.dataModel
 			}
 		},
 		mounted(){
 			
 			//公用
-			var Audio = new this.audio(this.songData);
+			var Audio = new this.audio(this.songData,this.dataModel);
 
 			//播放
-			Audio.play();
+			Audio.play(); 
 
 			//获取数据
 			Audio.loadedmetadata();
@@ -56,9 +54,14 @@
 			//歌曲进度条
 			Audio.progress();
 
-
 		},
 		methods:{
+			playNextSong:function(str) {
+
+				console.log(this.audio);
+
+			}
+			
 		// 	getAudio:function(songid){
 		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
 		// 		return song_url;

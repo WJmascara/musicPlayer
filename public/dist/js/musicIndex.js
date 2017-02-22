@@ -578,7 +578,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _c('div', {
     staticClass: "song_list",
     class: {
-      show: _vm.isShow
+      show: _vm.songData.isSongListShow
     }
   }, [_c('ul', _vm._l((_vm.dataModel.songlist), function(item, i) {
     return _c('li', {
@@ -860,24 +860,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			audio: __WEBPACK_IMPORTED_MODULE_0__js_common_js__["a" /* CreateAudio */],
 			songData: {
-				url: "",
 				songid: this.$route.params.songid,
 				beginTime: "",
 				endTime: "",
 				loadedPercent: "",
 				rotatedeg: "",
 				isPaused: false,
-				isRotatePause: false
+				isRotatePause: false,
+				isSongListShow: false
 			},
-			dataModel: window.dataModel,
-			isShow: false,
-			timer: ""
+			dataModel: window.dataModel
 		};
 	},
 	mounted() {
 
 		//公用
-		var Audio = new this.audio(this.songData);
+		var Audio = new this.audio(this.songData, this.dataModel);
 
 		//播放
 		Audio.play();
@@ -889,6 +887,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		Audio.progress();
 	},
 	methods: {
+		playNextSong: function (str) {
+
+			console.log(this.audio);
+		}
+
 		// 	getAudio:function(songid){
 		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
 		// 		return song_url;
@@ -1211,9 +1214,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateAudio; });
 
 
-function CreateAudio(songData) {
+function CreateAudio(songData, songlist) {
 
 	this.songData = songData;
+	this.songlist = songlist;
+
 	songData = {
 		songid: "",
 		beginTime: "",
@@ -1221,7 +1226,8 @@ function CreateAudio(songData) {
 		loadedPercent: "",
 		rotatedeg: "",
 		isPaused: false,
-		isRotatePause: false
+		isRotatePause: false,
+		isSongListShow: false
 	};
 	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songData.songid + ".m4a?fromtag=46");
 
@@ -1295,9 +1301,10 @@ CreateAudio.prototype.ended = function () {
 };
 
 //播放上一首、下一首
-CreateAudio.prototype.playNextSong = function (btnStatus, currentIndex, songsLength) {
+CreateAudio.prototype.playNextSong = function (btnStatus, currentIndex) {
 
 	var nextIndex = 0;
+	var songsLength = this.songlist.length;
 
 	if (btnStatus == "prev") {
 
@@ -1315,6 +1322,7 @@ CreateAudio.prototype.playNextSong = function (btnStatus, currentIndex, songsLen
 		}
 	} else {}
 
+	console.log(0);
 	return nextIndex;
 };
 

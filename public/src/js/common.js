@@ -1,8 +1,10 @@
 "use strict";
  
-function CreateAudio(songData) {
+function CreateAudio(songData,songlist) {
 
 	this.songData = songData;
+	this.songlist = songlist;
+
 	songData = {
 		songid:"",
 		beginTime:"",
@@ -10,7 +12,8 @@ function CreateAudio(songData) {
 		loadedPercent:"",
 		rotatedeg:"",
 		isPaused:false,
-		isRotatePause:false
+		isRotatePause:false,
+		isSongListShow:false
 	}
 	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songData.songid + ".m4a?fromtag=46");
 
@@ -91,9 +94,10 @@ CreateAudio.prototype.ended = function(){
 };
 
 //播放上一首、下一首
-CreateAudio.prototype.playNextSong = function(btnStatus,currentIndex,songsLength) {
+CreateAudio.prototype.playNextSong = function(btnStatus,currentIndex) {
 
 	var nextIndex = 0;
+	var songsLength = this.songlist.length;
 
 	if( btnStatus == "prev" ) {
 
@@ -112,9 +116,12 @@ CreateAudio.prototype.playNextSong = function(btnStatus,currentIndex,songsLength
 		}
 	}else {}
 
+	console.log(0);
 	return nextIndex;
 
-}
+};
+
+
 
 
 
