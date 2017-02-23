@@ -503,7 +503,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "song_module",
     style: ({
-      backgroundImage: 'url(' + (_vm.dataModel.topinfo.pic ? _vm.dataModel.topinfo.pic_album : '') + ')'
+      backgroundImage: 'url(' + (_vm.childDataModel.topinfo.pic ? _vm.childDataModel.topinfo.pic_album : '') + ')'
     })
   }, [_c('div', {
     staticClass: "mask_bg"
@@ -573,14 +573,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       pause: _vm.songData.isRotatePause
     },
     style: ({
-      backgroundImage: 'url(' + (_vm.dataModel.topinfo.pic ? _vm.dataModel.topinfo.pic : '') + ')'
+      backgroundImage: 'url(' + (_vm.childDataModel.topinfo.pic ? _vm.childDataModel.topinfo.pic : '') + ')'
     })
   }), _c('div', {
     staticClass: "song_list",
     class: {
       show: _vm.songData.isSongListShow
     }
-  }, [_c('ul', _vm._l((_vm.dataModel.songlist), function(item, i) {
+  }, [_c('ul', _vm._l((_vm.childDataModel.songlist), function(item, i) {
     return _c('li', {
       on: {
         "click": function($event) {
@@ -660,17 +660,13 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "songList_module"
-  }, [_c('router-link', {
-    staticClass: "img_box",
-    attrs: {
-      "to": {
-        name: 'song',
-        params: {
-          songid: '200576210',
-          songindex: 0
-        }
-      }
+  }, [_c('div', {
+    staticClass: "songs_list_wrap",
+    class: {
+      hide: _vm.isSongListHide
     }
+  }, [_c('a', {
+    staticClass: "img_box"
   }, [_c('img', {
     attrs: {
       "src": _vm.dataModel.topinfo.pic_album
@@ -686,15 +682,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })])]), _c('div', {
     staticClass: "songs_list"
   }, [_c('ul', _vm._l((_vm.dataModel.songlist), function(item, i) {
-    return _c('router-link', {
+    return _c('li', {
       staticClass: "item_box",
-      attrs: {
-        "to": {
-          name: 'song',
-          params: {
-            songid: item.data.songid,
-            songindex: i
-          }
+      on: {
+        "click": function($event) {
+          _vm.playToSong(i)
         }
       }
     }, [_c('span', {
@@ -706,7 +698,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(item.data.songname))]), _c('p', {
       staticClass: "singer_name"
     }, [_vm._v(_vm._s(item.data.singer[0].name) + _vm._s(item.data.albumname ? " · " + item.data.albumname : "") + " " + _vm._s(item.data.albumdesc ? " · " + item.data.albumdesc : ""))])])])
-  }))])], 1)
+  }))])]), _c('song', {
+    class: {
+      hide: _vm.isSongHide
+    },
+    attrs: {
+      "childDataModel": _vm.dataModel
+    }
+  })], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -850,6 +849,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -860,7 +861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {
 			audio: __WEBPACK_IMPORTED_MODULE_0__js_common_js__["a" /* CreateAudio */],
 			songData: {
-				songid: this.$route.params.songid,
+				songid: "",
 				beginTime: "",
 				endTime: "",
 				loadedPercent: "",
@@ -868,14 +869,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				isPaused: false,
 				isRotatePause: false,
 				isSongListShow: false
-			},
-			dataModel: window.dataModel
+			}
 		};
+	},
+	props: {
+		childDataModel: Object
 	},
 	mounted() {
 
 		//公用
-		var Audio = new this.audio(this.songData, this.dataModel);
+		var Audio = new this.audio(this.songData, this.childDataModel);
 
 		//播放
 		Audio.play();
@@ -885,12 +888,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		//歌曲进度条
 		Audio.progress();
+
+		console.log(this.childDataModel);
 	},
 	methods: {
-		playNextSong: function (str) {
+		playNextSong: function (str) {}
 
-			console.log(this.audio);
-		}
+		//console.log(this.childDataModel);
 
 		// 	getAudio:function(songid){
 		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
@@ -936,7 +940,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		// 		var result_index = 0;
 		// 		var current_index = this.$route.params.songindex;
-		// 		var songs_len = this.dataModel.songlist.length;
+		// 		var songs_len = this.childDataModel.songlist.length;
 
 		// 		//判断前进后退
 		// 		if( argument == "prev" ) {
@@ -957,11 +961,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		// 		}else{}
 
-		// 		var songid = this.dataModel.songlist[result_index].data.songid;
+		// 		var songid = this.childDataModel.songlist[result_index].data.songid;
 
 		// 		//重置songindex
 		// 		this.$route.params.songindex = result_index;
-		// 		this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
+		// 		this.$route.params.songid = this.childDataModel.songlist[result_index].data.songid;
 
 		// 		//播放
 		// 		this.getAudio(songid);
@@ -994,7 +998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		// 	},
 		// 	selectSong:function(index){
 
-		// 		var songid = this.dataModel.songlist[index].data.songid;
+		// 		var songid = this.childDataModel.songlist[index].data.songid;
 		// 		this.$route.params.songid = songid;
 
 		// 		this.getAudio(songid);
@@ -1081,6 +1085,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__song_vue__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__song_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__song_vue__);
 //
 //
 //
@@ -1099,6 +1105,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
@@ -1108,15 +1118,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			dataModel: {
 				topinfo: "",
 				songlist: []
-			}
+			},
+			isSongHide: true,
+			isSongListHide: false
 		};
+	},
+	components: {
+		song: __WEBPACK_IMPORTED_MODULE_0__song_vue___default.a
 	},
 	created() {
 		this.getList();
 	},
 	methods: {
 		getSuccessList: function (data) {
-			this.dataModel = window.dataModel = data;
+			this.dataModel = data;
 		},
 		getList: function () {
 
@@ -1128,6 +1143,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				jsonp: "callback"
 
 			}).done(this.getSuccessList);
+		},
+		playToSong: function (index) {
+
+			this.isSongHide = false;
+			this.isSongListHide = true;
+			//console.log(index);
+
+			play(index);
 		}
 
 	}
@@ -1338,18 +1361,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_music_vue_topList_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_music_vue_recom_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_music_vue_recom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_music_vue_recom_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_music_vue_search_vue__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_music_vue_search_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_music_vue_search_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_music_vue_songListRecom_vue__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_music_vue_songListRecom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_music_vue_songListRecom_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_music_vue_recom_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_music_vue_recom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_music_vue_recom_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_music_vue_search_vue__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_music_vue_search_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_music_vue_search_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_music_vue_songListRecom_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_music_vue_songListRecom_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_music_vue_songListRecom_vue__);
 
 
 __webpack_require__(7);
-
 
 
 
@@ -1363,13 +1383,11 @@ var router = new VueRouter({
 	}, {
 		name: "songsList", path: "/topList/songsList/:id", component: __WEBPACK_IMPORTED_MODULE_1__components_music_vue_songsList_vue___default.a
 	}, {
-		name: "song", path: "/topList/songsList/song/:songid/:songindex", component: __WEBPACK_IMPORTED_MODULE_2__components_music_vue_song_vue___default.a
+		name: "recom", path: "/recom", component: __WEBPACK_IMPORTED_MODULE_2__components_music_vue_recom_vue___default.a
 	}, {
-		name: "recom", path: "/recom", component: __WEBPACK_IMPORTED_MODULE_3__components_music_vue_recom_vue___default.a
+		name: "search", path: "/search", component: __WEBPACK_IMPORTED_MODULE_3__components_music_vue_search_vue___default.a
 	}, {
-		name: "search", path: "/search", component: __WEBPACK_IMPORTED_MODULE_4__components_music_vue_search_vue___default.a
-	}, {
-		name: "songListRecom", path: "/recom/songListRecom/:disstid", component: __WEBPACK_IMPORTED_MODULE_5__components_music_vue_songListRecom_vue___default.a
+		name: "songListRecom", path: "/recom/songListRecom/:disstid", component: __WEBPACK_IMPORTED_MODULE_4__components_music_vue_songListRecom_vue___default.a
 	}]
 });
 

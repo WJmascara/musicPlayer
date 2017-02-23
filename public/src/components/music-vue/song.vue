@@ -1,5 +1,5 @@
 <template lang="pug">
-	.song_module(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic_album:'')+')'}")
+	.song_module(:style="{backgroundImage:'url(' + (childDataModel.topinfo.pic ? childDataModel.topinfo.pic_album:'')+')'}")
 		.mask_bg
 		.music_controls
 			.progress
@@ -12,10 +12,12 @@
 				a(href="javascript:;",class="broadCast_btn",:class="{paused:songData.isPaused}",v-on:click="playerPaused()")
 				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
-		.mid_circle(:style="{backgroundImage:'url(' + (dataModel.topinfo.pic ? dataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:songData.isRotatePause}")
+		.mid_circle(:style="{backgroundImage:'url(' + (childDataModel.topinfo.pic ? childDataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:songData.isRotatePause}")
 		.song_list(:class="{show:songData.isSongListShow}")
 			ul
-				li(v-for="(item,i) in dataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
+
+			
+				li(v-for="(item,i) in childDataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
 			a(href="javascript:;",v-on:click="closeSongList()",class="close_btn") 关闭
 </template>
 <script>
@@ -28,7 +30,7 @@
 			return {
 				audio:CreateAudio,
 				songData:{
-					songid:this.$route.params.songid,
+					songid:"",
 					beginTime:"",
 					endTime:"",
 					loadedPercent:"",
@@ -37,13 +39,15 @@
 					isRotatePause:false,
 					isSongListShow:false,
 				},
-				dataModel:window.dataModel
 			}
+		},
+		props:{
+			childDataModel:Object
 		},
 		mounted(){
 			
 			//公用
-			var Audio = new this.audio(this.songData,this.dataModel);
+			var Audio = new this.audio(this.songData,this.childDataModel);
 
 			//播放
 			Audio.play(); 
@@ -54,11 +58,13 @@
 			//歌曲进度条
 			Audio.progress();
 
+			console.log(this.childDataModel);
+
 		},
 		methods:{
 			playNextSong:function(str) {
 
-				console.log(this.audio);
+				//console.log(this.childDataModel);
 
 			}
 			
@@ -106,7 +112,7 @@
 
 		// 		var result_index = 0;
 		// 		var current_index = this.$route.params.songindex;
-		// 		var songs_len = this.dataModel.songlist.length;
+		// 		var songs_len = this.childDataModel.songlist.length;
 
 		// 		//判断前进后退
 		// 		if( argument == "prev" ) {
@@ -127,11 +133,11 @@
 
 		// 		}else{}
 
-		// 		var songid = this.dataModel.songlist[result_index].data.songid;
+		// 		var songid = this.childDataModel.songlist[result_index].data.songid;
 
 		// 		//重置songindex
 		// 		this.$route.params.songindex = result_index;
-		// 		this.$route.params.songid = this.dataModel.songlist[result_index].data.songid;
+		// 		this.$route.params.songid = this.childDataModel.songlist[result_index].data.songid;
 
 		// 		//播放
 		// 		this.getAudio(songid);
@@ -164,7 +170,7 @@
 		// 	},
 		// 	selectSong:function(index){
 
-		// 		var songid = this.dataModel.songlist[index].data.songid;
+		// 		var songid = this.childDataModel.songlist[index].data.songid;
 		// 		this.$route.params.songid = songid;
 
 		// 		this.getAudio(songid);

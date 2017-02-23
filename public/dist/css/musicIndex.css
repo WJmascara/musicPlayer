@@ -659,6 +659,9 @@ body {
 .songList_module .songs_list .item_box:last-child .song-cont[data-v-fb7ab7b6] {
       border-bottom: none;
 }
+.songList_module .hide[data-v-fb7ab7b6] {
+  display: none;
+}
 
 .song_module {
   position: absolute;

@@ -1,22 +1,26 @@
 <template lang="pug">
-	.songList_module()
-		router-link(:to="{name:'song',params:{songid:'200576210',songindex:0}}",class="img_box")
-			img(:src="dataModel.topinfo.pic_album")
-			.gradient_bg
-			.info_box
-				.txt_cont
-					p {{dataModel.topinfo.ListName}}
-					p {{dataModel.update_time}}更新
-				.broad_cast
-		.songs_list
-			ul
-				router-link(v-for="(item,i) in dataModel.songlist",:to="{name:'song',params:{songid:item.data.songid,songindex:i}}",class="item_box")
-					span.num_cont {{i+1}}
-					div.song_cont
-						p.song_name {{item.data.songname}}
-						p.singer_name {{item.data.singer[0].name}}{{item.data.albumname?" · "+item.data.albumname:""}} {{item.data.albumdesc?" · "+item.data.albumdesc:""}}
+	.songList_module
+		.songs_list_wrap(:class="{hide:isSongListHide}")
+			a(class="img_box")
+				img(:src="dataModel.topinfo.pic_album")
+				.gradient_bg
+				.info_box
+					.txt_cont
+						p {{dataModel.topinfo.ListName}}
+						p {{dataModel.update_time}}更新
+					.broad_cast
+			.songs_list
+				ul
+					li(v-for="(item,i) in dataModel.songlist",class="item_box",@click="playToSong(i)")
+						span.num_cont {{i+1}}
+						div.song_cont
+							p.song_name {{item.data.songname}}
+							p.singer_name {{item.data.singer[0].name}}{{item.data.albumname?" · "+item.data.albumname:""}} {{item.data.albumdesc?" · "+item.data.albumdesc:""}}
+		song(:childDataModel="dataModel",:class="{hide:isSongHide}")
 </template>
 <script>
+	
+	import song from "./song.vue"
 
 	export default {
 		name:"songList_module",
@@ -25,15 +29,20 @@
 				dataModel:{
 					topinfo:"",
 					songlist:[]
-				}
+				},
+				isSongHide:true,
+				isSongListHide:false
 			}	
 		},
+		components:{
+            song
+        },
 		created(){
 			this.getList();
 		},
 		methods:{
 			getSuccessList:function(data){
-				this.dataModel = window.dataModel = data;
+				this.dataModel = data;
 			},
 			getList:function(){
 
@@ -45,6 +54,15 @@
 					jsonp:"callback"
 					
 				}).done(this.getSuccessList);
+			},
+			playToSong:function(index) {
+
+				this.isSongHide = false;
+				this.isSongListHide = true;
+				//console.log(index);
+
+				play(index);
+
 			}
 			
 		}
@@ -159,6 +177,9 @@
 					}
 				}
 			}
+		}
+		.hide {
+			display: none;
 		}
 	}
 </style>
