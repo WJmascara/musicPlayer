@@ -1,12 +1,11 @@
 "use strict";
  
-function CreateAudio(songData,songlist) {
+function CreateAudio(songData,songid) {
 
 	this.songData = songData;
-	this.songlist = songlist;
+	this.songid = songid;
 
 	songData = {
-		songid:"",
 		beginTime:"",
 		endTime:"",
 		loadedPercent:"",
@@ -14,121 +13,64 @@ function CreateAudio(songData,songlist) {
 		isPaused:false,
 		isRotatePause:false,
 		isSongListShow:false
-	}
-	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songData.songid + ".m4a?fromtag=46");
-
-	this.addZero = function(num) {
-		if( num > -1 && num < 10 ) {
-			num = "0" + num;
-		}
-		return num;
-	};
-	this.getTime = function(time){
-		var minutes = this.addZero(parseInt(time / 60));
-		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
-		return (minutes + ":" + seconds);
 	};
 
-}
-
-//播放
-CreateAudio.prototype.play = function(){
-
-	this.audio.play();
-	this.audio.isPaused = false;
-	this.songData.isRotatePause = false;
-
-};
-
-CreateAudio.prototype.loadedmetadata = function() {
+	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46");
 
 	var _that = this;
+	this.audio.addEventListener("canplay",function(){
+		_that.audio.play();
+		_that.songData.isPaused = false;
+		_that.songData.isRotatePause = false;
+	});
 
 	this.audio.addEventListener("loadedmetadata",function(){
 
 		_that.songData.beginTime = _that.getTime(0);
-		_that.songData.endTime = _that.getTime(_that.audio.duration);
-
-		//播放
-		_that.play();
-
-	})
-};
-
-//加载进度条
-CreateAudio.prototype.progress = function(){
-
-	var _that = this;
-
-	this.audio.addEventListener("timeupdate",function(){
-		//console.log(_that.audio.currentTime);
-		_that.songData.loadedPercent = _that.audio.currentTime / _that.audio.duration *100 + "%";
-		_that.songData.beginTime = _that.getTime(_that.audio.currentTime);
-
-		if( _that.audio.currentTime == _that.audio.duration ) {
-
-			//视频播放结束
-			_that.audio.ended = true;
-
-		}
+		_that.songData.endTime = _that.getTime(this.duration);
 
 	});
+
+	this.audio.addEventListener("timeupdate",function(){
+
+		_that.songData.loadedPercent = this.currentTime / this.duration *100 + "%";
+		_that.songData.beginTime = _that.getTime(this.currentTime);
+
+	});
+
+	this.audio.addEventListener("ended",function(){
+		
+		_that.songData.isPaused = true;
+		_that.songData.isRotatePause = true;
+
+	});
+
+}
+
+CreateAudio.prototype.play = function(){
+	this.audio.play();
+	this.songData.isPaused = false;
+	this.songData.isRotatePause = false;
 };
 
-//暂停
 CreateAudio.prototype.pause = function(){
-
 	this.audio.pause();
 	this.songData.isPaused = true;
 	this.songData.isRotatePause = true;
-
 };
 
-//结束
-CreateAudio.prototype.ended = function(){
-
-	this.audio.ended = true;
-	this.songData.isPaused = true;
-	this.songData.isRotatePause = true;
-
+CreateAudio.prototype.addZero = function(num) {
+	if( num > -1 && num < 10 ) {
+		num = "0" + num;
+	}
+	return num;
 };
 
-//播放上一首、下一首
-CreateAudio.prototype.playNextSong = function(btnStatus,currentIndex) {
-
-	var nextIndex = 0;
-	var songsLength = this.songlist.length;
-
-	if( btnStatus == "prev" ) {
-
-		if( currentIndex > 0 ) {
-			nextIndex = currentIndex - 1;
-		}else {
-			nextIndex = songsLength - 1;
-		}
-
-	}else if( btnStatus == "next" ) {
-
-		if( currentIndex < songsLength - 1 ) {
-			nextIndex = currentIndex + 1;
-		}else {
-			nextIndex = 0;
-		}
-	}else {}
-
-	console.log(0);
-	return nextIndex;
-
+CreateAudio.prototype.getTime = function(time) {
+	var minutes = this.addZero(parseInt(time / 60));
+	var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
+	return (minutes + ":" + seconds);
 };
-
-
-
-
-
-
-
-
-
 
 
 

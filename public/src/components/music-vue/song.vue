@@ -15,8 +15,6 @@
 		.mid_circle(:style="{backgroundImage:'url(' + (childDataModel.topinfo.pic ? childDataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:songData.isRotatePause}")
 		.song_list(:class="{show:songData.isSongListShow}")
 			ul
-
-			
 				li(v-for="(item,i) in childDataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
 			a(href="javascript:;",v-on:click="closeSongList()",class="close_btn") 关闭
 </template>
@@ -30,7 +28,6 @@
 			return {
 				audio:CreateAudio,
 				songData:{
-					songid:"",
 					beginTime:"",
 					endTime:"",
 					loadedPercent:"",
@@ -38,33 +35,59 @@
 					isPaused:false,
 					isRotatePause:false,
 					isSongListShow:false,
-				},
+				}
 			}
 		},
 		props:{
-			childDataModel:Object
+			childDataModel:Object,
+			songindex:Number
 		},
-		mounted(){
-			
-			//公用
-			var Audio = new this.audio(this.songData,this.childDataModel);
-
-			//播放
-			Audio.play(); 
-
-			//获取数据
-			Audio.loadedmetadata();
-
-			//歌曲进度条
-			Audio.progress();
-
-			console.log(this.childDataModel);
-
+		watch:{
+			songindex:"playSong"
 		},
 		methods:{
-			playNextSong:function(str) {
+			playSong:function(songindex){
 
-				//console.log(this.childDataModel);
+				this.songindex = songindex;
+				this.Audio = new this.audio(this.songData,this.childDataModel.songlist[this.songindex].data.songid);
+
+			},
+			playerPaused:function(){
+				if( !this.songData.isPaused ) {
+
+					this.Audio.pause();
+
+				}else {
+
+					this.Audio.play();
+
+				}
+			},
+			playNextSong:function(btnStatus) {
+
+				var nextIndex = 0;
+				var currentIndex = this.songindex;
+				var songsLength = this.childDataModel.songlist.length;
+
+				if( btnStatus == "prev" ) {
+
+					if( currentIndex > 0 ) {
+						nextIndex = currentIndex - 1;
+					}else {
+						nextIndex = songsLength - 1;
+					}
+
+				}else if( btnStatus == "next" ) {
+
+					if( currentIndex < songsLength - 1 ) {
+						nextIndex = currentIndex + 1;
+					}else {
+						nextIndex = 0;
+					}
+				}else {}
+
+				console.log(this.Audio);
+				this.playSong(nextIndex);
 
 			}
 			

@@ -11,12 +11,12 @@
 					.broad_cast
 			.songs_list
 				ul
-					li(v-for="(item,i) in dataModel.songlist",class="item_box",@click="playToSong(i)")
-						span.num_cont {{i+1}}
+					li(v-for="(item,index) in dataModel.songlist",class="item_box",v-on:click="playToSong(index)")
+						span.num_cont {{index+1}}
 						div.song_cont
 							p.song_name {{item.data.songname}}
 							p.singer_name {{item.data.singer[0].name}}{{item.data.albumname?" · "+item.data.albumname:""}} {{item.data.albumdesc?" · "+item.data.albumdesc:""}}
-		song(:childDataModel="dataModel",:class="{hide:isSongHide}")
+		song(:childDataModel="dataModel",:songindex="songindex",:class="{hide:isSongHide}")
 </template>
 <script>
 	
@@ -31,7 +31,8 @@
 					songlist:[]
 				},
 				isSongHide:true,
-				isSongListHide:false
+				isSongListHide:false,
+				songindex:-1
 			}	
 		},
 		components:{
@@ -59,9 +60,9 @@
 
 				this.isSongHide = false;
 				this.isSongListHide = true;
-				//console.log(index);
 
-				play(index);
+				this.songindex = index;
+				console.log(this.songindex);
 
 			}
 			
