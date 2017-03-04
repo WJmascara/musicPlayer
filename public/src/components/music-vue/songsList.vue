@@ -1,6 +1,6 @@
 <template lang="pug">
 	.songList_module
-		.songs_list_wrap(:class="{hide:isSongListHide}")
+		.songs_list_wrap(v-show="isSongListShow")
 			a(class="img_box")
 				img(:src="dataModel.topinfo.pic_album")
 				.gradient_bg
@@ -16,7 +16,7 @@
 						div.song_cont
 							p.song_name {{item.data.songname}}
 							p.singer_name {{item.data.singer[0].name}}{{item.data.albumname?" · "+item.data.albumname:""}} {{item.data.albumdesc?" · "+item.data.albumdesc:""}}
-		song(:childDataModel="dataModel",:songindex="songindex",:class="{hide:isSongHide}")
+		song(:childDataModel="dataModel",:songindex="songindex",v-show="isSongShow")
 </template>
 <script>
 	
@@ -30,9 +30,11 @@
 					topinfo:"",
 					songlist:[]
 				},
-				isSongHide:true,
-				isSongListHide:false,
-				songindex:-1
+				isSongShow:false,
+				isSongListShow:true,
+				songindex:{
+					i:-1
+				}
 			}	
 		},
 		components:{
@@ -58,11 +60,10 @@
 			},
 			playToSong:function(index) {
 
-				this.isSongHide = false;
-				this.isSongListHide = true;
+				this.isSongShow = true;
+				this.isSongListShow = false;
 
-				this.songindex = index;
-				console.log(this.songindex);
+				this.songindex.i = index;
 
 			}
 			

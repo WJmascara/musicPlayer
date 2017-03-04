@@ -13,10 +13,11 @@
 				a(href="javascript:;",class="next_btn",v-on:click="playNextSong('next')")
 				a(href="javascript:;",class="list_btn",v-on:click="showSongList()")
 		.mid_circle(:style="{backgroundImage:'url(' + (childDataModel.topinfo.pic ? childDataModel.topinfo.pic:'')+')'}",class="rotate",:class="{pause:songData.isRotatePause}")
-		.song_list(:class="{show:songData.isSongListShow}")
+		.song_list(v-show="isSongListShow")
 			ul
 				li(v-for="(item,i) in childDataModel.songlist",v-on:click="selectSong(i)") {{item.data.songname}} {{item.data.singer[0].name}}
 			a(href="javascript:;",v-on:click="closeSongList()",class="close_btn") 关闭
+		audio(ref="audio")
 </template>
 <script>
 	
@@ -26,47 +27,51 @@
 		name:"song_module",
 		data(){
 			return {
-				audio:CreateAudio,
+				init:CreateAudio,
 				songData:{
 					beginTime:"",
 					endTime:"",
 					loadedPercent:"",
 					rotatedeg:"",
-					isPaused:false,
-					isRotatePause:false,
-					isSongListShow:false,
-				}
+					isPaused:true,
+					isRotatePause:true
+				},
+				audio:"",
+				isSongListShow:false
 			}
 		},
 		props:{
 			childDataModel:Object,
-			songindex:Number
+			songindex:Object
 		},
 		watch:{
-			songindex:"playSong"
+			"songindex.i":function(){
+				this.playSong(this.songindex.i);
+			}
 		},
 		methods:{
-			playSong:function(songindex){
+			playSong:function(index){
 
-				this.songindex = songindex;
-				this.Audio = new this.audio(this.songData,this.childDataModel.songlist[this.songindex].data.songid);
+				this.audio = this.$refs.audio;
+				//console.log(this.audio);
+				this.instanceObj = new this.init(this.audio,this.songData,this.childDataModel.songlist[index].data.songid);
 
 			},
 			playerPaused:function(){
 				if( !this.songData.isPaused ) {
 
-					this.Audio.pause();
+					this.instanceObj.pause();
 
 				}else {
 
-					this.Audio.play();
+					this.instanceObj.play();
 
 				}
 			},
 			playNextSong:function(btnStatus) {
 
 				var nextIndex = 0;
-				var currentIndex = this.songindex;
+				var currentIndex = this.songindex.i;
 				var songsLength = this.childDataModel.songlist.length;
 
 				if( btnStatus == "prev" ) {
@@ -86,137 +91,27 @@
 					}
 				}else {}
 
-				console.log(this.Audio);
+				this.songindex.i = nextIndex;
+				//console.log(nextIndex);
 				this.playSong(nextIndex);
 
-			}
-			
-		// 	getAudio:function(songid){
-		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
-		// 		return song_url;
-		// 	},
-		// 	getSongData:function(){
+			},
+			showSongList:function(){
+				this.isSongListShow = true;
+			},
+			closeSongList:function(){
+				this.isSongListShow = false;;
+			},
+			selectSong:function(index){
 
-		// 		var _that = this;
+				this.playSong(index);
 
-		// 		//获取audio元素
-		// 		var audio = _that.$refs.audio;
-		// 		audio.addEventListener("loadedmetadata",function(){
-
-		// 			_that.songData.beginTime = _that.getTime(0);
-		// 			_that.songData.endTime = _that.getTime(audio.duration);
-
-		// 			//播放音乐
-		// 			audio.play();
-
-		// 			//加载条的变化
-		// 			_that.timer = setInterval(function(){
-		// 				var loaded_time = audio.currentTime;
-		// 				var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
-
-		// 				_that.songData.beginTime = _that.getTime(loaded_time);
-		// 				_that.songData.loadedPercent = loaded_percent;
-
-		// 				//播放完成自动暂停
-		// 				if(  audio.currentTime == audio.duration ){
-
-		// 					_that.songData.isPaused = true;
-		// 					audio.pause();
-		// 					_that.isRotatePause = true;
-
-		// 					//清除计数器
-		// 					clearInterval(_that.timer);
-		// 				}
-		// 			},200);
-
-		// 		});
-		// 	},
-		// 	playNextSong:function(argument){
-
-		// 		var result_index = 0;
-		// 		var current_index = this.$route.params.songindex;
-		// 		var songs_len = this.childDataModel.songlist.length;
-
-		// 		//判断前进后退
-		// 		if( argument == "prev" ) {
-
-		// 		 	if( current_index > 0 ) {
-		// 				result_index = current_index - 1;
-		// 			}else {
-		// 				result_index = songs_len - 1;
-		// 			}
-
-		// 		}else if( argument == "next" ) {
-
-		// 			if( current_index < songs_len - 1 ) {
-		// 				result_index = current_index + 1;
-		// 			}else {
-		// 				current_index = 0;
-		// 			}
-
-		// 		}else{}
-
-		// 		var songid = this.childDataModel.songlist[result_index].data.songid;
-
-		// 		//重置songindex
-		// 		this.$route.params.songindex = result_index;
-		// 		this.$route.params.songid = this.childDataModel.songlist[result_index].data.songid;
-
-		// 		//播放
-		// 		this.getAudio(songid);
-		// 		this.songData.isPaused = false;
-
-		// 		this.isRotatePause = false;
-
-		// 	},
-		// 	playerPaused:function(){
-
-		// 		if( !this.songData.isPaused ) {
-
-		// 			this.songData.isPaused = true;
-		// 			this.$refs.audio.pause();
-		// 			this.isRotatePause = true;
-
-		// 		}else {
-
-		// 			this.songData.isPaused = false;
-		// 			this.$refs.audio.play();
-		// 			this.isRotatePause = false;
-
-		// 		}
-		// 	},
-		// 	showSongList:function(){
-		// 		this.isShow = true;
-		// 	},
-		// 	closeSongList:function(){
-		// 		this.isShow = false;
-		// 	},
-		// 	selectSong:function(index){
-
-		// 		var songid = this.childDataModel.songlist[index].data.songid;
-		// 		this.$route.params.songid = songid;
-
-		// 		this.getAudio(songid);
-
-		// 		//关闭列表
-		// 		this.closeSongList();
+				//关闭列表
+				this.closeSongList();
 				
-		// 	},
-		// 	getTime:function(time){
-
-		// 		var minutes = this.addZero(parseInt(time / 60));
-		// 		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
-		// 		return (minutes + ":" + seconds);
-		// 	},
-		// 	addZero:function(num){
-		// 		if( num > -1 && num < 10 ) {
-		// 			num = "0" + num;
-		// 		}
-		// 		return num;
-		// 	}
-		// }
+			}
+		}
 	}
-}
 </script>
 <style lang="scss">
 	.song_module {
@@ -392,7 +287,7 @@
 			
 		}
 		.song_list {
-			display: none;
+			display: block;
 			position: absolute;
 			padding-bottom:2rem;
 			left: 0;
@@ -402,9 +297,6 @@
 			overflow-y:scroll;
 			background:#fff;
 			z-index: 3;
-			&.show {
-				display: block;
-			}
 			li {
 				line-height: 2rem;
 			    font-size: .6rem;

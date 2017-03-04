@@ -867,7 +867,7 @@ body {
                   transform: translate(0, -50%);
 }
 .song_module .song_list {
-    display: none;
+    display: block;
     position: absolute;
     padding-bottom: 32px;
     padding-bottom: 2rem;
@@ -879,9 +879,6 @@ body {
     overflow-y: scroll;
     background: #fff;
     z-index: 3;
-}
-.song_module .song_list.show {
-      display: block;
 }
 .song_module .song_list li {
       line-height: 32px;

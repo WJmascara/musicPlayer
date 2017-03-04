@@ -137,7 +137,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\recom.vue"
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/recom.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] recom.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -175,7 +175,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\search.vue"
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/search.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] search.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -213,7 +213,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\songListRecom.vue"
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/songListRecom.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] songListRecom.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -251,7 +251,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\songsList.vue"
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/songsList.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] songsList.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -289,7 +289,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\topList.vue"
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/topList.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] topList.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -333,7 +333,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "D:\\Tujia Study\\codeSummary\\codes\\codes\\vue.js\\Tour_Heroes_vue\\public\\src\\components\\music-vue\\song.vue"
+Component.options.__file = "/Users/wangjie/Desktop/vueStudy/Tour_Heroes_vue/public/src/components/music-vue/song.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] song.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -576,10 +576,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       backgroundImage: 'url(' + (_vm.childDataModel.topinfo.pic ? _vm.childDataModel.topinfo.pic : '') + ')'
     })
   }), _c('div', {
-    staticClass: "song_list",
-    class: {
-      show: _vm.songData.isSongListShow
-    }
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isSongListShow),
+      expression: "isSongListShow"
+    }],
+    staticClass: "song_list"
   }, [_c('ul', _vm._l((_vm.childDataModel.songlist), function(item, i) {
     return _c('li', {
       on: {
@@ -598,7 +601,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.closeSongList()
       }
     }
-  }, [_vm._v("关闭")])])])
+  }, [_vm._v("关闭")])]), _c('audio', {
+    ref: "audio"
+  })])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -661,10 +666,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "songList_module"
   }, [_c('div', {
-    staticClass: "songs_list_wrap",
-    class: {
-      hide: _vm.isSongListHide
-    }
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isSongListShow),
+      expression: "isSongListShow"
+    }],
+    staticClass: "songs_list_wrap"
   }, [_c('a', {
     staticClass: "img_box"
   }, [_c('img', {
@@ -699,9 +707,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "singer_name"
     }, [_vm._v(_vm._s(item.data.singer[0].name) + _vm._s(item.data.albumname ? " · " + item.data.albumname : "") + " " + _vm._s(item.data.albumdesc ? " · " + item.data.albumdesc : ""))])])])
   }))])]), _c('song', {
-    class: {
-      hide: _vm.isSongHide
-    },
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isSongShow),
+      expression: "isSongShow"
+    }],
     attrs: {
       "childDataModel": _vm.dataModel,
       "songindex": _vm.songindex
@@ -850,6 +861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -858,44 +870,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	name: "song_module",
 	data() {
 		return {
-			audio: __WEBPACK_IMPORTED_MODULE_0__js_common_js__["a" /* CreateAudio */],
+			init: __WEBPACK_IMPORTED_MODULE_0__js_common_js__["a" /* CreateAudio */],
 			songData: {
 				beginTime: "",
 				endTime: "",
 				loadedPercent: "",
 				rotatedeg: "",
-				isPaused: false,
-				isRotatePause: false,
-				isSongListShow: false
-			}
+				isPaused: true,
+				isRotatePause: true
+			},
+			audio: "",
+			isSongListShow: false
 		};
 	},
 	props: {
 		childDataModel: Object,
-		songindex: Number
+		songindex: Object
 	},
 	watch: {
-		songindex: "playSong"
+		"songindex.i": function () {
+			this.playSong(this.songindex.i);
+		}
 	},
 	methods: {
-		playSong: function (songindex) {
+		playSong: function (index) {
 
-			this.songindex = songindex;
-			this.Audio = new this.audio(this.songData, this.childDataModel.songlist[this.songindex].data.songid);
+			this.audio = this.$refs.audio;
+			//console.log(this.audio);
+			this.instanceObj = new this.init(this.audio, this.songData, this.childDataModel.songlist[index].data.songid);
 		},
 		playerPaused: function () {
 			if (!this.songData.isPaused) {
 
-				this.Audio.pause();
+				this.instanceObj.pause();
 			} else {
 
-				this.Audio.play();
+				this.instanceObj.play();
 			}
 		},
 		playNextSong: function (btnStatus) {
 
 			var nextIndex = 0;
-			var currentIndex = this.songindex;
+			var currentIndex = this.songindex.i;
 			var songsLength = this.childDataModel.songlist.length;
 
 			if (btnStatus == "prev") {
@@ -914,134 +930,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}
 			} else {}
 
-			console.log(this.Audio);
+			this.songindex.i = nextIndex;
+			//console.log(nextIndex);
 			this.playSong(nextIndex);
+		},
+		showSongList: function () {
+			this.isSongListShow = true;
+		},
+		closeSongList: function () {
+			this.isSongListShow = false;;
+		},
+		selectSong: function (index) {
+
+			this.playSong(index);
+
+			//关闭列表
+			this.closeSongList();
 		}
-
-		// 	getAudio:function(songid){
-		// 		var song_url = "http://ws.stream.qqmusic.qq.com/" + songid + ".m4a?fromtag=46";
-		// 		return song_url;
-		// 	},
-		// 	getSongData:function(){
-
-		// 		var _that = this;
-
-		// 		//获取audio元素
-		// 		var audio = _that.$refs.audio;
-		// 		audio.addEventListener("loadedmetadata",function(){
-
-		// 			_that.songData.beginTime = _that.getTime(0);
-		// 			_that.songData.endTime = _that.getTime(audio.duration);
-
-		// 			//播放音乐
-		// 			audio.play();
-
-		// 			//加载条的变化
-		// 			_that.timer = setInterval(function(){
-		// 				var loaded_time = audio.currentTime;
-		// 				var loaded_percent = audio.currentTime / audio.duration * 100 + "%";
-
-		// 				_that.songData.beginTime = _that.getTime(loaded_time);
-		// 				_that.songData.loadedPercent = loaded_percent;
-
-		// 				//播放完成自动暂停
-		// 				if(  audio.currentTime == audio.duration ){
-
-		// 					_that.songData.isPaused = true;
-		// 					audio.pause();
-		// 					_that.isRotatePause = true;
-
-		// 					//清除计数器
-		// 					clearInterval(_that.timer);
-		// 				}
-		// 			},200);
-
-		// 		});
-		// 	},
-		// 	playNextSong:function(argument){
-
-		// 		var result_index = 0;
-		// 		var current_index = this.$route.params.songindex;
-		// 		var songs_len = this.childDataModel.songlist.length;
-
-		// 		//判断前进后退
-		// 		if( argument == "prev" ) {
-
-		// 		 	if( current_index > 0 ) {
-		// 				result_index = current_index - 1;
-		// 			}else {
-		// 				result_index = songs_len - 1;
-		// 			}
-
-		// 		}else if( argument == "next" ) {
-
-		// 			if( current_index < songs_len - 1 ) {
-		// 				result_index = current_index + 1;
-		// 			}else {
-		// 				current_index = 0;
-		// 			}
-
-		// 		}else{}
-
-		// 		var songid = this.childDataModel.songlist[result_index].data.songid;
-
-		// 		//重置songindex
-		// 		this.$route.params.songindex = result_index;
-		// 		this.$route.params.songid = this.childDataModel.songlist[result_index].data.songid;
-
-		// 		//播放
-		// 		this.getAudio(songid);
-		// 		this.songData.isPaused = false;
-
-		// 		this.isRotatePause = false;
-
-		// 	},
-		// 	playerPaused:function(){
-
-		// 		if( !this.songData.isPaused ) {
-
-		// 			this.songData.isPaused = true;
-		// 			this.$refs.audio.pause();
-		// 			this.isRotatePause = true;
-
-		// 		}else {
-
-		// 			this.songData.isPaused = false;
-		// 			this.$refs.audio.play();
-		// 			this.isRotatePause = false;
-
-		// 		}
-		// 	},
-		// 	showSongList:function(){
-		// 		this.isShow = true;
-		// 	},
-		// 	closeSongList:function(){
-		// 		this.isShow = false;
-		// 	},
-		// 	selectSong:function(index){
-
-		// 		var songid = this.childDataModel.songlist[index].data.songid;
-		// 		this.$route.params.songid = songid;
-
-		// 		this.getAudio(songid);
-
-		// 		//关闭列表
-		// 		this.closeSongList();
-
-		// 	},
-		// 	getTime:function(time){
-
-		// 		var minutes = this.addZero(parseInt(time / 60));
-		// 		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
-		// 		return (minutes + ":" + seconds);
-		// 	},
-		// 	addZero:function(num){
-		// 		if( num > -1 && num < 10 ) {
-		// 			num = "0" + num;
-		// 		}
-		// 		return num;
-		// 	}
-		// }
 	}
 };
 
@@ -1141,9 +1046,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				topinfo: "",
 				songlist: []
 			},
-			isSongHide: true,
-			isSongListHide: false,
-			songindex: -1
+			isSongShow: false,
+			isSongListShow: true,
+			songindex: {
+				i: -1
+			}
 		};
 	},
 	components: {
@@ -1169,11 +1076,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		playToSong: function (index) {
 
-			this.isSongHide = false;
-			this.isSongListHide = true;
+			this.isSongShow = true;
+			this.isSongListShow = false;
 
-			this.songindex = index;
-			console.log(this.songindex);
+			this.songindex.i = index;
 		}
 
 	}
@@ -1258,12 +1164,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateAudio; });
+/* unused harmony export ConverseData */
 
 
-function CreateAudio(songData, songid) {
+//音乐播放器
+
+var CreateAudio = function (audio, songData, songid) {
 
 	this.songData = songData;
 	this.songid = songid;
+	this.audio = audio;
 
 	songData = {
 		beginTime: "",
@@ -1271,17 +1181,17 @@ function CreateAudio(songData, songid) {
 		loadedPercent: "",
 		rotatedeg: "",
 		isPaused: false,
-		isRotatePause: false,
-		isSongListShow: false
+		isRotatePause: false
 	};
 
-	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46");
+	this.audio.src = "http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46";
 
+	//播放
 	var _that = this;
+
 	this.audio.addEventListener("canplay", function () {
-		_that.audio.play();
-		_that.songData.isPaused = false;
-		_that.songData.isRotatePause = false;
+
+		_that.play();
 	});
 
 	this.audio.addEventListener("loadedmetadata", function () {
@@ -1298,35 +1208,38 @@ function CreateAudio(songData, songid) {
 
 	this.audio.addEventListener("ended", function () {
 
-		_that.songData.isPaused = true;
-		_that.songData.isRotatePause = true;
+		_that.pause();
 	});
-}
-
-CreateAudio.prototype.play = function () {
-	this.audio.play();
-	this.songData.isPaused = false;
-	this.songData.isRotatePause = false;
 };
 
-CreateAudio.prototype.pause = function () {
-	this.audio.pause();
-	this.songData.isPaused = true;
-	this.songData.isRotatePause = true;
-};
+CreateAudio.prototype = {
 
-CreateAudio.prototype.addZero = function (num) {
-	if (num > -1 && num < 10) {
-		num = "0" + num;
+	play: function () {
+		this.audio.play();
+		this.songData.isPaused = false;
+		this.songData.isRotatePause = false;
+	},
+	pause: function () {
+		this.audio.pause();
+		this.songData.isPaused = true;
+		this.songData.isRotatePause = true;
+	},
+	addZero: function (num) {
+		if (num > -1 && num < 10) {
+			num = "0" + num;
+		}
+		return num;
+	},
+	getTime: function (time) {
+		var minutes = this.addZero(parseInt(time / 60));
+		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0, 2)));
+		return minutes + ":" + seconds;
 	}
-	return num;
+
 };
 
-CreateAudio.prototype.getTime = function (time) {
-	var minutes = this.addZero(parseInt(time / 60));
-	var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0, 2)));
-	return minutes + ":" + seconds;
-};
+//数据转换
+var ConverseData = function () {};
 
 
 

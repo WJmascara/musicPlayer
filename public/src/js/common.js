@@ -1,9 +1,12 @@
 "use strict";
  
-function CreateAudio(songData,songid) {
+//音乐播放器
+
+var CreateAudio = function(audio,songData,songid) {
 
 	this.songData = songData;
 	this.songid = songid;
+	this.audio = audio;
 
 	songData = {
 		beginTime:"",
@@ -11,17 +14,18 @@ function CreateAudio(songData,songid) {
 		loadedPercent:"",
 		rotatedeg:"",
 		isPaused:false,
-		isRotatePause:false,
-		isSongListShow:false
+		isRotatePause:false
 	};
 
-	this.audio = new Audio("http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46");
-
+	this.audio.src = "http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46";
+	
+	//播放
 	var _that = this;
+
 	this.audio.addEventListener("canplay",function(){
-		_that.audio.play();
-		_that.songData.isPaused = false;
-		_that.songData.isRotatePause = false;
+
+		_that.play();
+
 	});
 
 	this.audio.addEventListener("loadedmetadata",function(){
@@ -40,39 +44,44 @@ function CreateAudio(songData,songid) {
 
 	this.audio.addEventListener("ended",function(){
 		
-		_that.songData.isPaused = true;
-		_that.songData.isRotatePause = true;
+		_that.pause();
 
 	});
 
+};
+
+CreateAudio.prototype = {
+
+	play:function(){
+		this.audio.play();
+		this.songData.isPaused = false;
+		this.songData.isRotatePause = false;
+	},
+	pause:function(){
+		this.audio.pause();
+		this.songData.isPaused = true;
+		this.songData.isRotatePause = true;
+	},
+	addZero:function(num){
+		if( num > -1 && num < 10 ) {
+			num = "0" + num;
+		}
+		return num;
+	},
+	getTime:function(time){
+		var minutes = this.addZero(parseInt(time / 60));
+		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
+		return (minutes + ":" + seconds);
+	}
+
+};
+
+//数据转换
+var ConverseData = function(){
+
+
+
 }
 
-CreateAudio.prototype.play = function(){
-	this.audio.play();
-	this.songData.isPaused = false;
-	this.songData.isRotatePause = false;
-};
-
-CreateAudio.prototype.pause = function(){
-	this.audio.pause();
-	this.songData.isPaused = true;
-	this.songData.isRotatePause = true;
-};
-
-CreateAudio.prototype.addZero = function(num) {
-	if( num > -1 && num < 10 ) {
-		num = "0" + num;
-	}
-	return num;
-};
-
-CreateAudio.prototype.getTime = function(time) {
-	var minutes = this.addZero(parseInt(time / 60));
-	var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
-	return (minutes + ":" + seconds);
-};
-
-
-
-export {CreateAudio}
+export {CreateAudio,ConverseData}
 
