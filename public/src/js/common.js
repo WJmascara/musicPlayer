@@ -2,86 +2,85 @@
  
 //音乐播放器
 
-var CreateAudio = function(audio,songData,songid) {
+class CreateAudio{
 
-	this.songData = songData;
-	this.songid = songid;
-	this.audio = audio;
+	constructor(audio,songData,songid) {
 
-	songData = {
-		beginTime:"",
-		endTime:"",
-		loadedPercent:"",
-		rotatedeg:"",
-		isPaused:false,
-		isRotatePause:false
-	};
+		this.songData = songData;
+		this.songid = songid;
+		this.audio = audio;
 
-	this.audio.src = "http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46";
-	
-	//播放
-	var _that = this;
+		songData = {
+			beginTime:"",
+			endTime:"",
+			loadedPercent:"",
+			rotatedeg:"",
+			isPaused:false,
+			isRotatePause:false
+		};
 
-	this.audio.addEventListener("canplay",function(){
+		this.audio.src = "http://ws.stream.qqmusic.qq.com/" + this.songid + ".m4a?fromtag=46";
 
-		_that.play();
+		//播放
+		const _that = this;
 
-	});
+		this.audio.addEventListener("canplay",function(){
 
-	this.audio.addEventListener("loadedmetadata",function(){
+			_that.play();
 
-		_that.songData.beginTime = _that.getTime(0);
-		_that.songData.endTime = _that.getTime(this.duration);
+		});
 
-	});
+		this.audio.addEventListener("loadedmetadata",function(){
 
-	this.audio.addEventListener("timeupdate",function(){
+			_that.songData.beginTime = _that.handleTime(0);
+			_that.songData.endTime = _that.handleTime(this.duration);
 
-		_that.songData.loadedPercent = this.currentTime / this.duration *100 + "%";
-		_that.songData.beginTime = _that.getTime(this.currentTime);
+		});
 
-	});
+		this.audio.addEventListener("timeupdate",function(){
 
-	this.audio.addEventListener("ended",function(){
-		
-		_that.pause();
+			_that.songData.loadedPercent = this.currentTime / this.duration *100 + "%";
+			_that.songData.beginTime = _that.handleTime(this.currentTime);
 
-	});
+		});
 
-};
+		this.audio.addEventListener("ended",function(){
+			
+			_that.pause();
 
-CreateAudio.prototype = {
+		});
+	}
 
-	play:function(){
+	play(){
 		this.audio.play();
 		this.songData.isPaused = false;
 		this.songData.isRotatePause = false;
-	},
-	pause:function(){
+	}
+
+	pause(){
 		this.audio.pause();
 		this.songData.isPaused = true;
 		this.songData.isRotatePause = true;
-	},
-	addZero:function(num){
+	}
+
+	addZero(num){
 		if( num > -1 && num < 10 ) {
 			num = "0" + num;
 		}
 		return num;
-	},
-	getTime:function(time){
-		var minutes = this.addZero(parseInt(time / 60));
-		var seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
+	}
+
+	handleTime(time){
+		const minutes = this.addZero(parseInt(time / 60));
+		const seconds = this.addZero(parseInt(String(Math.floor(time % 60)).substr(0,2)));
 		return (minutes + ":" + seconds);
 	}
 
-};
+}
+
 
 //数据转换
-var ConverseData = function(){
-
-
-
-}
+class ConverseData{}
 
 export {CreateAudio,ConverseData}
 
