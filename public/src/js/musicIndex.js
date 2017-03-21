@@ -4,8 +4,10 @@ require("../sass/base.sass")
 
 import Vue from "vue"
 import VueRouter from "vue-router"
+import VueResource from "vue-resource"
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 import topList from "../components/music-vue/topList.vue"
 import songsList from "../components/music-vue/songsList.vue"

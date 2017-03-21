@@ -17,6 +17,7 @@
                                 span.singer_name {{value.singername}}
 </template>
 <script>
+    
     export default{
         name:"topList_module",
         data(){
@@ -27,40 +28,35 @@
         created(){
             this.getList();
         },
+        watch:{
+            
+        },
         methods:{
-            getSuccessList:function(data){
-                console.log(data);
-                this.items = data.data.topList;
-            },
             getList:function(){
 
-                $.ajax({
+                this.$http({
 
-                    url:"https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg?format=jsonp&g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&_=1486287537095&jsonpCallback=?",
-                    type:"get",
-                    dataType:"jsonp",
-                    jsonp:"callback"
+                    url:"https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg",
+                    method:"jsonp",
+                    jsonp:"jsonpCallback"
 
-                }).done(this.getSuccessList).fail(function(){
+                }).then((response) => {
 
-                    return false;
+                    //console.log(response);
+                    let res_data = response.data;
+                    this.items = res_data.data.topList;
+                    
+                }).catch((response)=>{
 
-                }).always(function(){
-                    console.log(1);
-                })
+                    console.log(response);
+
+                });
             }
         },
         filters:{
             cutNum: function(value) {
-
-                // var str = String(value);
-                // var str_a = str.substr(0,str.length-3);
-                // var str_b = str_a.substr(0,str_a.length-1);
-                // var str_c = Math.round(parseInt(str_a.charAt(str_a.length-1)));
-
-                // var result = str_b +　"," + str_c;
+               
                 var result = (value/10000).toFixed(1);
-
                 return result;
             }
         }

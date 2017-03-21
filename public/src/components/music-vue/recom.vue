@@ -31,21 +31,25 @@
 		mounted(){
 		},
 		methods:{
-			getSuccessList:function(data) {
-				this.recomData = data;
-			},
 			getList:function(){
 
-				$.ajax({
-					url:"https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg?format=jsonp&tpl=v12&page=other&rnd=0&g_tk=1486632476661&loginUin=0&hostUin=0&inCharset=utf8&outCharset=GB2312&notice=0&platform=yqq&needNewCode=0&jsonpCallback=?",
-					dataType:"jsonp",
-					type:"get",
-					jsonp:"callback"
-				}).done(this.getSuccessList).fail(function(){
+				this.$http({
 
-				}).always(function(){
+                    url:"https://c.y.qq.com/v8/fcg-bin/fcg_first_yqq.fcg?format=jsonp&tpl=v12&page=other&rnd=0&g_tk=1486632476661&loginUin=0&hostUin=0&inCharset=utf8&outCharset=GB2312&notice=0&platform=yqq&needNewCode=0",
+                    method:"jsonp",
+                    jsonp:"jsonpCallback"
 
-				});
+                }).then((response) => {
+
+                    //console.log(response);
+                    let res_data = response.data;
+                    this.recomData = res_data;
+                    
+                }).catch((response)=>{
+
+                    console.log(response);
+
+                });
 
 			}
 		}

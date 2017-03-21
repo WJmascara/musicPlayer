@@ -78,9 +78,9 @@ class CreateAudio{
 
 }
 
-
 //数据转换
 class ConverseData{}
 
-export {CreateAudio,ConverseData}
+
+export {CreateAudio,ConverseData,GetData}
 

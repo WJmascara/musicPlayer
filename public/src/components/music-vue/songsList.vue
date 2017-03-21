@@ -44,19 +44,25 @@
 			this.getList();
 		},
 		methods:{
-			getSuccessList:function(data){
-				this.dataModel = data;
-			},
 			getList:function(){
 
-				var that = this;
-				$.ajax({
-					url:"https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&"+"topid="+that.$route.params.id+"&jsonpCallback=?",
-					type:"get",
-					dataType:"jsonp",
-					jsonp:"callback"
-					
-				}).done(this.getSuccessList);
+				this.$http({
+
+                    url:"https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&"+"topid="+this.$route.params.id,
+                    method:"jsonp",
+                    jsonp:"jsonpCallback"
+
+                }).then((response) => {
+
+                    let res_data = response.data;
+                    this.dataModel = res_data;
+                    
+                }).catch((response)=>{
+
+                    console.log(response);
+
+                });
+
 			},
 			playToSong:function(index) {
 
@@ -89,6 +95,7 @@
 				left: 0;
 				top: 0;
 				z-index: 0;
+				object-fit:cover;
 			}
 			.gradient_bg {
 				position: absolute;

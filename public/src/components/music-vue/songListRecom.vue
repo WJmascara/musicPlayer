@@ -29,25 +29,25 @@
 			this.getList();
 		},
 		methods:{
-			getSuccessList:function(data){
-				
-				this.dataModel = data;
-
-			},
 			getList:function(){
 
-				var that = this;
-				$.ajax({
-					url:"https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&new_format=1&pic=500&disstid="+that.$route.params.disstid+"&type=1&json=1&utf8=1&onlysong=0&nosign=1&_=1486633911911&jsonpCallback=?",
-					type:"get",
-					dataType:"jsonp",
-					jsonp:"callback"
-					
-				}).done(this.getSuccessList).fail(function(){
+				this.$http({
 
-				}).always(function(){
+                    url:"https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&new_format=1&pic=500&disstid="+this.$route.params.disstid+"&type=1&json=1&utf8=1&onlysong=0&nosign=1&_=1486633911911",
+                    method:"jsonp",
+                    jsonp:"jsonpCallback"
 
-				})
+                }).then((response) => {
+
+                    //console.log(response);
+                    let res_data = response.data;
+                    this.dataModel = res_data;
+                    
+                }).catch((response)=>{
+
+                    console.log(response);
+
+                });
 			}
 			
 		}

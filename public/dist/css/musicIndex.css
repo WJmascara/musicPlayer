@@ -547,6 +547,8 @@ body {
     left: 0;
     top: 0;
     z-index: 0;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 .songList_module .img_box .gradient_bg[data-v-fb7ab7b6] {
     position: absolute;
